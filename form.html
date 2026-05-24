@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>AgencyVisa Form</title>
+<title>AgencyVisa Form Pengajuan</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,83 +10,146 @@
 
 <div class="page">
 
-<h1>Pengajuan Visa AgencyVisa</h1>
+<h1>INFORMASI TAMBAHAN DIBUTUHKAN</h1>
+<p>Harap isi data dengan benar sebelum dikirim</p>
 
 <form id="visaForm">
 
-<!-- STEP 1 -->
-<div id="step1">
-  <h3>Data Pribadi</h3>
+<!-- ================== INFORMASI PRIBADI ================== -->
+<h2>INFORMASI PRIBADI</h2>
 
-  <input id="nama" placeholder="Nama Lengkap" required>
-  <input id="email" placeholder="Email">
-  <input id="hp" placeholder="No WhatsApp">
+<input id="nama" placeholder="Nama Lengkap" required>
+<input id="nik" placeholder="National ID / NIK">
+<input id="status" placeholder="Status Perkawinan">
 
-  <button type="button" onclick="nextStep(2)">Lanjut</button>
-</div>
+<input id="alamat" placeholder="Alamat Rumah">
+<input id="kota" placeholder="Kota">
+<input id="provinsi" placeholder="Provinsi">
+<input id="kodepos" placeholder="Kode Pos">
+<input id="negara" placeholder="Negara/Wilayah">
 
-<!-- STEP 2 -->
-<div id="step2" style="display:none;">
-  <h3>Pilih Negara</h3>
+<input id="hp" placeholder="Nomor Telepon Utama" required>
+<input id="email" placeholder="Alamat Email">
 
-  <select id="negara">
-    <option>Amerika Serikat</option>
-    <option>Inggris</option>
-    <option>Jepang</option>
-    <option>Schengen</option>
-  </select>
+<input id="facebook" placeholder="Facebook">
+<input id="instagram" placeholder="Instagram">
 
-  <input id="pekerjaan" placeholder="Pekerjaan">
+<!-- ================== KELUARGA ================== -->
+<h2>INFORMASI KELUARGA</h2>
 
-  <button type="button" onclick="nextStep(3)">Lanjut</button>
-</div>
+<input id="ayah" placeholder="Nama Ayah">
+<input id="tglayah" placeholder="Tanggal Lahir Ayah">
 
-<!-- STEP 3 -->
-<div id="step3" style="display:none;">
-  <h3>Konfirmasi</h3>
-  <p>Pastikan data sudah benar sebelum dikirim</p>
+<input id="ibu" placeholder="Nama Ibu">
+<input id="tglibu" placeholder="Tanggal Lahir Ibu">
 
-  <button type="submit">Kirim Sekarang</button>
-</div>
+<input id="pasangan" placeholder="Nama Pasangan">
+<input id="tgllahirpasangan" placeholder="Tempat, Tgl Lahir Pasangan">
+<input id="tglmenikah" placeholder="Tanggal Menikah">
+<input id="tglcerai" placeholder="Tanggal Cerai (jika ada)">
+
+<!-- ================== PEKERJAAN ================== -->
+<h2>INFORMASI PEKERJAAN</h2>
+
+<input id="job" placeholder="Pekerjaan Utama">
+<input id="company" placeholder="Nama Perusahaan">
+
+<input id="alamatkerja" placeholder="Alamat Perusahaan">
+<input id="kotakerja" placeholder="Kota Kerja">
+<input id="provinsikerja" placeholder="Provinsi Kerja">
+<input id="kodeposkerja" placeholder="Kode Pos Kerja">
+
+<input id="tglmulai" placeholder="Tanggal Mulai Bekerja">
+<input id="telpkantor" placeholder="Telepon Kantor">
+<input id="gaji" placeholder="Gaji Bulanan">
+
+<input id="tugas" placeholder="Tugas / Jabatan">
+
+<!-- ================== PENDIDIKAN ================== -->
+<h2>PENDIDIKAN</h2>
+
+<h3>SMP</h3>
+<input id="smp_nama" placeholder="Nama Sekolah">
+<input id="smp_alamat" placeholder="Alamat Sekolah">
+<input id="smp_mulai" placeholder="Mulai">
+<input id="smp_lulus" placeholder="Lulus">
+
+<h3>SMA</h3>
+<input id="sma_nama" placeholder="Nama Sekolah">
+<input id="sma_alamat" placeholder="Alamat Sekolah">
+<input id="sma_jurusan" placeholder="Jurusan">
+<input id="sma_mulai" placeholder="Mulai">
+<input id="sma_lulus" placeholder="Lulus">
+
+<h3>PERGURUAN TINGGI</h3>
+<input id="kuliah_nama" placeholder="Nama Universitas">
+<input id="kuliah_alamat" placeholder="Alamat Universitas">
+<input id="kuliah_jurusan" placeholder="Bidang / Program Studi">
+<input id="kuliah_mulai" placeholder="Mulai">
+<input id="kuliah_lulus" placeholder="Lulus">
+
+<!-- ================== LAINNYA ================== -->
+<h2>LAINNYA</h2>
+
+<input id="bahasa" placeholder="Bahasa yang dikuasai">
+<input id="riwayatnegara" placeholder="Negara yang pernah dikunjungi">
+
+<button type="submit">KIRIM PENGAJUAN</button>
 
 </form>
 
 </div>
 
 <script>
-let step = 1;
-
-function nextStep(n){
-  document.getElementById("step"+step).style.display="none";
-  document.getElementById("step"+n).style.display="block";
-  step = n;
-}
-
 document.getElementById("visaForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  let nama = document.getElementById("nama").value;
-  let email = document.getElementById("email").value;
-  let hp = document.getElementById("hp").value;
-  let negara = document.getElementById("negara").value;
-  let pekerjaan = document.getElementById("pekerjaan").value;
+  let data = {
+    nama: nama.value,
+    nik: nik.value,
+    status: status.value,
+    alamat: alamat.value,
+    kota: kota.value,
+    provinsi: provinsi.value,
+    kodepos: kodepos.value,
+    negara: negara.value,
+    hp: hp.value,
+    email: email.value,
 
-  let pesan =
-`🔥 AgencyVisa Submission
+    job: job.value,
+    company: company.value,
 
-Nama: ${nama}
-Negara: ${negara}
-Pekerjaan: ${pekerjaan}
-Email: ${email}
-No HP: ${hp}
+    ayah: ayah.value,
+    ibu: ibu.value,
+    pasangan: pasangan.value,
 
-Tolong follow up user ini.`;
+    pendidikan: sma_nama.value,
+
+    time: new Date().toLocaleString()
+  };
+
+  // SIMPAN KE ADMIN
+  let leads = JSON.parse(localStorage.getItem("leads") || "[]");
+  leads.push(data);
+  localStorage.setItem("leads", JSON.stringify(leads));
+
+  // WHATSAPP MESSAGE
+  let msg =
+`🔥 AGENCYVISA FULL SUBMISSION
+
+Nama: ${data.nama}
+Negara: ${data.negara}
+Pekerjaan: ${data.job}
+HP: ${data.hp}
+Email: ${data.email}
+
+Status: PENDING REVIEW`;
 
   window.location.href =
-  "https://wa.me/628816906696?text=" + encodeURIComponent(pesan);
+  "https://wa.me/628816906696?text=" + encodeURIComponent(msg);
 
 });
 </script>
 
 </body>
-</html>
+  </html>
