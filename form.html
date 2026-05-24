@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>AgencyVisa - Multi Step System</title>
+<title>AgencyVisa - Questionnaire System</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
@@ -10,8 +10,8 @@
 body{
   margin:0;
   font-family:Inter;
-  background:#0b1220;
   color:white;
+  background:#0b1220;
 }
 
 .bg{
@@ -31,17 +31,22 @@ body{
 }
 
 .container{
-  max-width:900px;
+  max-width:1000px;
   margin:30px auto;
   padding:20px;
 }
 
 .card{
   background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.1);
   border-radius:16px;
   padding:20px;
-  border:1px solid rgba(255,255,255,0.1);
+  margin-bottom:20px;
+}
+
+h2,h3{
+  color:#38bdf8;
 }
 
 input,textarea{
@@ -52,44 +57,54 @@ input,textarea{
   border:none;
   background:rgba(255,255,255,0.12);
   color:white;
+  outline:none;
+}
+
+.section-title{
+  font-weight:bold;
+  margin-top:10px;
+  color:#a5f3fc;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.tag{
+  display:inline-block;
+  padding:6px 10px;
+  margin:4px;
+  border-radius:20px;
+  background:#1e293b;
+  cursor:pointer;
+}
+
+.tag.active{
+  background:#22c55e;
+}
+
+.small-btn{
+  background:#334155;
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  cursor:pointer;
+  margin-top:8px;
 }
 
 button{
-  padding:12px;
+  width:100%;
+  padding:14px;
   border:none;
   border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.next{background:#22c55e;color:white;width:100%;}
-.prev{background:#334155;color:white;width:48%;}
-.submit{background:linear-gradient(90deg,#22c55e,#06b6d4);color:white;width:100%;}
-
-.step{
-  display:none;
-}
-
-.step.active{
-  display:block;
-}
-
-.progress{
-  height:8px;
-  background:#1e293b;
-  border-radius:20px;
-  margin-bottom:20px;
-  overflow:hidden;
-}
-
-.bar{
-  height:100%;
-  width:0%;
   background:linear-gradient(90deg,#22c55e,#06b6d4);
-  transition:0.3s;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-h2{color:#38bdf8}
 </style>
 </head>
 
@@ -100,68 +115,117 @@ h2{color:#38bdf8}
 
 <div class="container">
 
-<h2>🌍 AGENCY VISA MULTI STEP SYSTEM</h2>
-
-<div class="progress"><div class="bar" id="bar"></div></div>
+<h2>🌍 AGENCY VISA - FULL QUESTIONNAIRE SYSTEM</h2>
 
 <form id="visaForm">
 
-<!-- STEP 1 -->
-<div class="card step active">
-<h3>STEP 1 - INFORMASI PRIBADI</h3>
+<!-- PRIBADI -->
+<div class="card">
+<h3>INFORMASI PRIBADI</h3>
 
 <input name="nama" placeholder="Nama Lengkap">
-<input name="nik" placeholder="NIK">
+<input name="nik" placeholder="National ID / NIK">
 <input name="status" placeholder="Status Perkawinan">
-<input name="telepon" placeholder="WhatsApp">
-<input name="email" placeholder="Email">
 
-<button type="button" class="next" onclick="nextStep()">LANJUT</button>
-</div>
-
-<!-- STEP 2 -->
-<div class="card step">
-<h3>STEP 2 - ALAMAT & PEKERJAAN</h3>
-
-<input name="alamat" placeholder="Alamat">
+<div class="section-title">Alamat Rumah</div>
+<input name="alamat" placeholder="Alamat (Jl/No/Ds/Kel/Kec)">
 <input name="kota" placeholder="Kota">
 <input name="provinsi" placeholder="Provinsi">
+<input name="kodepos" placeholder="Kode Pos">
+<input name="negara" placeholder="Negara/Wilayah">
 
-<input name="job" placeholder="Pekerjaan">
-<input name="company" placeholder="Perusahaan">
+<input name="telepon" placeholder="Nomor Telepon">
+<input name="email" placeholder="Email">
 
-<div style="display:flex;gap:10px;">
-<button type="button" class="prev" onclick="prevStep()">KEMBALI</button>
-<button type="button" class="next" onclick="nextStep()">LANJUT</button>
+<div class="section-title">Sosial Media</div>
+<input name="fb" placeholder="Facebook">
+<input name="ig" placeholder="Instagram">
+
 </div>
-</div>
 
-<!-- STEP 3 -->
-<div class="card step">
-<h3>STEP 3 - KELUARGA</h3>
+<!-- KELUARGA -->
+<div class="card">
+<h3>INFORMASI KELUARGA</h3>
 
+<div class="section-title">Orang Tua</div>
 <input name="ayah" placeholder="Nama Ayah">
+<input name="tglayah" placeholder="Tanggal Lahir Ayah">
 <input name="ibu" placeholder="Nama Ibu">
+<input name="tglibu" placeholder="Tanggal Lahir Ibu">
+
+<div class="section-title">Pasangan</div>
 <input name="pasangan" placeholder="Nama Pasangan">
+<input name="ttlpasangan" placeholder="Tempat, Tgl Lahir">
+<input name="menikah" placeholder="Tanggal Menikah">
+<input name="cerai" placeholder="Tanggal Cerai">
 
-<div style="display:flex;gap:10px;">
-<button type="button" class="prev" onclick="prevStep()">KEMBALI</button>
-<button type="button" class="next" onclick="nextStep()">LANJUT</button>
-</div>
 </div>
 
-<!-- STEP 4 -->
-<div class="card step">
-<h3>STEP 4 - BAHASA & NEGARA</h3>
+<!-- PEKERJAAN -->
+<div class="card">
+<h3>INFORMASI PEKERJAAN</h3>
 
-<textarea name="bahasa" placeholder="Bahasa yang dikuasai"></textarea>
-<textarea name="negara" placeholder="Negara yang pernah dikunjungi"></textarea>
+<input name="job" placeholder="Pekerjaan Utama">
+<input name="company" placeholder="Nama Perusahaan">
 
-<div style="display:flex;gap:10px;">
-<button type="button" class="prev" onclick="prevStep()">KEMBALI</button>
-<button type="button" class="submit" onclick="submitForm()">KIRIM APLIKASI</button>
+<div class="section-title">Alamat Perusahaan</div>
+<input name="alamatkerja" placeholder="Alamat">
+<input name="kotakerja" placeholder="Kota">
+<input name="provkerja" placeholder="Provinsi">
+<input name="kodekerja" placeholder="Kode Pos">
+<input name="negkerja" placeholder="Negara">
+
+<input name="mulai" placeholder="Tanggal Mulai">
+<input name="kantor" placeholder="Nomor Kantor">
+<input name="gaji" placeholder="Gaji Bulanan">
+
+<textarea name="tugas" placeholder="Jelaskan Tugas/Jabatan"></textarea>
+
 </div>
+
+<!-- PENDIDIKAN -->
+<div class="card">
+<h3>PENDIDIKAN</h3>
+
+<div class="section-title">SMP</div>
+<input name="smp" placeholder="Nama Sekolah">
+<input name="smpalamat" placeholder="Alamat">
+<input name="smpmulai" placeholder="Mulai">
+<input name="smpkeluar" placeholder="Lulus">
+
+<div class="section-title">SMA</div>
+<input name="sma" placeholder="Nama Sekolah">
+<input name="smaalamat" placeholder="Alamat">
+<input name="smamulai" placeholder="Mulai">
+<input name="smalulus" placeholder="Lulus">
+
+<div class="section-title">Universitas</div>
+<input name="uni" placeholder="Nama Universitas">
+<input name="unialamat" placeholder="Alamat">
+<input name="unimulai" placeholder="Mulai">
+<input name="unilulus" placeholder="Lulus">
+
 </div>
+
+<!-- BAHASA -->
+<div class="card">
+<h3>BAHASA</h3>
+
+<div id="langBox"></div>
+<input id="customLang" placeholder="Tambah bahasa lain">
+<div class="small-btn" onclick="addLang()">+ Tambahkan</div>
+</div>
+
+<!-- NEGARA -->
+<div class="card">
+<h3>NEGARA YANG PERNAH DIKUNJUNGI (5 TAHUN TERAKHIR)</h3>
+
+<div id="countryBox"></div>
+<input id="customCountry" placeholder="Tambah negara lain">
+<div class="small-btn" onclick="addCountry()">+ Tambahkan</div>
+</div>
+
+<button type="submit">KIRIM APLIKASI VISA</button>
 
 </form>
 
@@ -169,66 +233,116 @@ h2{color:#38bdf8}
 
 <script>
 
-let step = 0;
-const steps = document.querySelectorAll(".step");
+// ===== LANGUAGE SYSTEM =====
+let langs = ["Indonesia","English","Mandarin","Korea","Jepang","Arab"];
+let selectedLang = [];
 
-function showStep(i){
-  steps.forEach((s,idx)=>{
-    s.classList.toggle("active", idx===i);
+function renderLang(){
+  const box = document.getElementById("langBox");
+  box.innerHTML="";
+
+  langs.forEach(l=>{
+    let div=document.createElement("div");
+    div.className="tag";
+    div.innerText=l;
+
+    div.onclick=()=>{
+      if(selectedLang.includes(l)){
+        selectedLang = selectedLang.filter(x=>x!==l);
+        div.classList.remove("active");
+      } else {
+        selectedLang.push(l);
+        div.classList.add("active");
+      }
+    };
+
+    box.appendChild(div);
   });
-
-  document.getElementById("bar").style.width = ((i+1)/steps.length)*100 + "%";
 }
 
-function nextStep(){
-  if(step < steps.length-1){
-    step++;
-    showStep(step);
-  }
+function addLang(){
+  const v=document.getElementById("customLang").value;
+  if(!v) return;
+  langs.push(v);
+  document.getElementById("customLang").value="";
+  renderLang();
 }
 
-function prevStep(){
-  if(step > 0){
-    step--;
-    showStep(step);
-  }
+renderLang();
+
+
+// ===== COUNTRY SYSTEM =====
+let countries = ["USA","Jepang","Korea","China","Singapore","Malaysia","Australia"];
+let selectedCountry = [];
+
+function renderCountry(){
+  const box = document.getElementById("countryBox");
+  box.innerHTML="";
+
+  countries.forEach(c=>{
+    let div=document.createElement("div");
+    div.className="tag";
+    div.innerText=c;
+
+    div.onclick=()=>{
+      if(selectedCountry.includes(c)){
+        selectedCountry = selectedCountry.filter(x=>x!==c);
+        div.classList.remove("active");
+      } else {
+        selectedCountry.push(c);
+        div.classList.add("active");
+      }
+    };
+
+    box.appendChild(div);
+  });
 }
 
-function submitForm(){
-  const f = document.getElementById("visaForm");
+function addCountry(){
+  const v=document.getElementById("customCountry").value;
+  if(!v) return;
+  countries.push(v);
+  document.getElementById("customCountry").value="";
+  renderCountry();
+}
 
-  const data = `
-🔥 AGENCY VISA MULTI STEP SUBMISSION
+renderCountry();
+
+
+// ===== SUBMIT =====
+document.getElementById("visaForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const f=this;
+
+  let data = `
+🌍 AGENCY VISA FULL SUBMISSION
 
 PRIBADI
 Nama: ${f.nama.value}
 NIK: ${f.nik.value}
 Status: ${f.status.value}
-WA: ${f.telepon.value}
-Email: ${f.email.value}
 
 ALAMAT
 ${f.alamat.value}, ${f.kota.value}, ${f.provinsi.value}
-
-PEKERJAAN
-${f.job.value} - ${f.company.value}
 
 KELUARGA
 Ayah: ${f.ayah.value}
 Ibu: ${f.ibu.value}
 Pasangan: ${f.pasangan.value}
 
+PEKERJAAN
+${f.job.value} - ${f.company.value}
+
 BAHASA
-${f.bahasa.value}
+${selectedLang.join(", ")}
 
 NEGARA
-${f.negara.value}
+${selectedCountry.join(", ")}
 
 STATUS: NEW APPLICATION
 `;
 
-  // Formspree
-  fetch("https://formspree.io/f/xzdwvnnq",{
+  await fetch("https://formspree.io/f/xzdwvnnq",{
     method:"POST",
     headers:{
       "Accept":"application/json",
@@ -237,11 +351,10 @@ STATUS: NEW APPLICATION
     body:JSON.stringify({message:data})
   });
 
-  // WhatsApp ADMIN
   window.location.href =
   "https://wa.me/628816906696?text="+encodeURIComponent(data);
-}
 
+});
 </script>
 
 </body>
