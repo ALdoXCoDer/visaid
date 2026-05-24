@@ -3,173 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Visa ID</title>
+<title>Visa ID Premium</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  background:#050816;
-  overflow-x:hidden;
+  font-family:'Poppins',sans-serif;
+  background:#020817;
   color:white;
+  overflow-x:hidden;
+  min-height:100vh;
 }
 
-/* ===== BACKGROUND PESAWAT ===== */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-.bg{
+.background-layer{
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-5;
 
   background:
-  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.82)),
-  url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80);
+  linear-gradient(
+    rgba(0,0,0,0.76),
+    rgba(0,0,0,0.82)
+  ),
+  url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');
 
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
+  transform:scale(1.05);
 }
 
-/* ===== OVERLAY BLUR ===== */
-
-.overlay{
+.blur-layer{
   position:fixed;
   inset:0;
-  z-index:-1;
-  backdrop-filter:blur(2px);
+  z-index:-4;
+  backdrop-filter:blur(4px);
 }
 
-/* ===== TOPBAR ===== */
+.gradient-orb{
+  position:fixed;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(100px);
+  z-index:-3;
+  opacity:0.35;
+}
 
-.topbar{
+.orb1{
+  top:-120px;
+  left:-120px;
+  background:#2563eb;
+}
+
+.orb2{
+  bottom:-120px;
+  right:-120px;
+  background:#06b6d4;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+  width:100%;
+  max-width:1500px;
+  margin:auto;
+  padding-bottom:80px;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+  width:100%;
+  padding:24px 28px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 18px 10px;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:700;
-}
-
-.toggle{
-  border:none;
-  background:white;
-  color:black;
-  padding:10px 14px;
-  border-radius:14px;
-  font-size:12px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ===== LIGHT MODE ===== */
-
-body.light{
-  background:#f4f4f4;
-  color:#111;
-}
-
-body.light .bg{
-  background:
-  linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.82)),
-  url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80);
-
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-}
-
-body.light .toggle{
-  background:#111827;
-  color:white;
-}
-
-body.light .search{
-  background:white;
-}
-
-body.light .search input{
-  color:black;
-}
-
-/* ===== HEADER ===== */
-
-.header{
-  text-align:center;
-  padding:10px 20px 25px;
-}
-
-.header h1{
-  font-size:38px;
-  line-height:1.3;
-  font-weight:800;
-  margin-bottom:10px;
-}
-
-.header p{
-  font-size:14px;
-  opacity:0.8;
-}
-
-/* ===== SEARCH ===== */
-
-.search-wrap{
-  padding:0 16px 22px;
-}
-
-.search{
-  width:100%;
-  background:#08152f;
-  border-radius:18px;
-  padding:15px 16px;
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:14px;
 }
 
-.search input{
-  width:100%;
+.logo-icon{
+  width:52px;
+  height:52px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:24px;
+  box-shadow:0 12px 30px rgba(37,99,235,0.4);
+}
+
+.logo-text h2{
+  font-size:24px;
+  font-weight:800;
+}
+
+.logo-text p{
+  font-size:12px;
+  opacity:0.75;
+}
+
+.nav-buttons{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-btn{
   border:none;
-  outline:none;
-  background:none;
+  padding:12px 18px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
   color:white;
-  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-/* ===== GRID ===== */
+.nav-btn:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,0.18);
+}
 
-.list{
-  padding:0 16px 40px;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+.primary-btn{
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  width:100%;
+  padding:20px 28px 40px;
+  text-align:center;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(16px);
+  margin-bottom:26px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.hero-badge span{
+  font-size:14px;
+  font-weight:600;
+}
+
+.hero h1{
+  font-size:68px;
+  line-height:1.1;
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.hero p{
+  max-width:900px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.8;
+  opacity:0.82;
+}
+
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  margin-top:38px;
+  flex-wrap:wrap;
+}
+
+.hero-action-btn{
+  padding:18px 30px;
+  border-radius:18px;
+  text-decoration:none;
+  color:white;
+  font-weight:700;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.hero-primary{
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+  box-shadow:0 18px 35px rgba(37,99,235,0.35);
+}
+
+.hero-secondary{
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.12);
+}
+
+.hero-action-btn:hover{
+  transform:translateY(-5px);
+}
+
+/* =========================================================
+   SEARCH SECTION
+========================================================= */
+
+.search-section{
+  width:100%;
+  padding:20px 28px 30px;
+}
+
+.search-box{
+  width:100%;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(16px);
+  border-radius:28px;
+  padding:22px 24px;
+  display:flex;
+  align-items:center;
   gap:16px;
 }
 
-/* ===== CARD ===== */
+.search-box input{
+  width:100%;
+  background:none;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:16px;
+  font-weight:500;
+}
+
+.search-box input::placeholder{
+  color:rgba(255,255,255,0.55);
+}
+
+.search-icon{
+  font-size:22px;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+  width:100%;
+  padding:0 28px 30px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.stat-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:26px;
+  padding:30px;
+}
+
+.stat-card h2{
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+.stat-card p{
+  opacity:0.78;
+  font-size:14px;
+}
+
+/* =========================================================
+   DESTINATION TITLE
+========================================================= */
+
+.section-title{
+  padding:20px 28px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.section-title h2{
+  font-size:38px;
+  font-weight:800;
+}
+
+.section-title p{
+  opacity:0.75;
+}
+
+/* =========================================================
+   CARD GRID
+========================================================= */
+
+.grid{
+  padding:0 28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
 
 .card{
   position:relative;
-  height:270px;
-  border-radius:26px;
+  height:420px;
+  border-radius:34px;
   overflow:hidden;
   background-size:cover;
   background-position:center;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  padding:16px;
+  padding:26px;
+  transition:0.35s;
+  box-shadow:0 25px 45px rgba(0,0,0,0.25);
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.01);
 }
 
 .card::before{
@@ -178,9 +365,9 @@ body.light .search input{
   inset:0;
   background:linear-gradient(
     to top,
-    rgba(0,0,0,0.82),
-    rgba(0,0,0,0.20),
-    rgba(0,0,0,0.05)
+    rgba(0,0,0,0.92),
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.10)
   );
 }
 
@@ -189,342 +376,456 @@ body.light .search input{
   z-index:2;
 }
 
-/* ===== FLAG ===== */
-
 .flag{
   position:absolute;
-  top:12px;
-  left:12px;
-  width:40px;
-  height:40px;
-  border-radius:14px;
+  top:22px;
+  left:22px;
+  width:56px;
+  height:56px;
+  border-radius:18px;
   object-fit:cover;
-  border:2px solid rgba(255,255,255,0.9);
+  border:3px solid rgba(255,255,255,0.85);
+  box-shadow:0 8px 18px rgba(0,0,0,0.35);
 }
 
-/* ===== INFO ===== */
-
-.info h3{
-  font-size:19px;
-  font-weight:700;
-  margin-bottom:5px;
+.card-country{
+  font-size:34px;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
-.info p{
+.card-desc{
+  font-size:15px;
+  line-height:1.7;
+  opacity:0.86;
+  margin-bottom:24px;
+}
+
+.card-meta{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.meta-badge{
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:10px 14px;
+  border-radius:999px;
   font-size:12px;
-  opacity:0.9;
-  margin-bottom:14px;
+  backdrop-filter:blur(12px);
 }
 
-/* ===== BUTTON ===== */
-
-.btn{
+.card-button{
   width:100%;
   text-decoration:none;
   background:white;
-  color:#111;
-  padding:13px;
-  border-radius:18px;
+  color:#111827;
+  padding:18px;
+  border-radius:20px;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:13px;
   font-weight:700;
+  transition:0.3s;
 }
 
-/* ===== SEARCH HIDE ===== */
+.card-button:hover{
+  transform:scale(1.02);
+}
 
 .hide{
   display:none;
 }
 
-/* ===== MOBILE ===== */
+/* =========================================================
+   FOOTER
+========================================================= */
 
-@media(max-width:600px){
+.footer{
+  width:100%;
+  margin-top:80px;
+  padding:40px 28px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
 
-  .header h1{
-    font-size:28px;
+.footer p{
+  opacity:0.72;
+}
+
+.footer-links{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:white;
+  text-decoration:none;
+  opacity:0.72;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
   }
 
   .card{
-    height:250px;
+    height:360px;
+  }
+
+  .section-title h2{
+    font-size:30px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .navbar,
+  .hero,
+  .search-section,
+  .stats,
+  .section-title,
+  .grid,
+  .footer{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .card-country{
+    font-size:28px;
   }
 
 }
 
 </style>
 </head>
-
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg"></div>
-<div class="overlay"></div>
+<div class="background-layer"></div>
+<div class="blur-layer"></div>
+<div class="gradient-orb orb1"></div>
+<div class="gradient-orb orb2"></div>
 
-<!-- TOPBAR -->
-<div class="topbar">
+<div class="container">
 
-  <div class="logo">
-    🌍 Visa ID
-  </div>
+  <nav class="navbar">
 
-  <button class="toggle" onclick="toggleMode()">
-    Mode
-  </button>
+    <div class="logo-wrap">
+      <div class="logo-icon">✈️</div>
 
-</div>
+      <div class="logo-text">
+        <h2>Visa ID</h2>
+        <p>Premium Travel Experience</p>
+      </div>
+    </div>
 
-<!-- HEADER -->
-<div class="header">
+    <div class="nav-buttons">
+      <button class="nav-btn">Login</button>
+      <button class="nav-btn primary-btn">Get Started</button>
+    </div>
 
-  <h1>
-    Jelajahi Dunia dengan Layanan Visa Terbaik
-  </h1>
+  </nav>
 
-  <p>
-    Booking visa cepat & mudah ke berbagai negara populer
-  </p>
+  <section class="hero">
 
-</div>
+    <div class="hero-badge">
+      🌍 <span>Trusted International Visa Platform</span>
+    </div>
 
-<!-- SEARCH -->
-<div class="search-wrap">
+    <h1>
+      Jelajahi Dunia Dengan
+      Pengalaman Visa Premium
+    </h1>
 
-  <div class="search">
+    <p>
+      Visa ID membantu Anda mengajukan permohonan visa internasional dengan tampilan modern, proses cepat, keamanan tinggi, dan pengalaman premium untuk perjalanan impian Anda.
+    </p>
 
-    🔍
+    <div class="hero-actions">
+      <a href="#destinations" class="hero-action-btn hero-primary">
+        Mulai Pengajuan Visa
+      </a>
 
-    <input
+      <a href="#" class="hero-action-btn hero-secondary">
+        Lihat Negara Populer
+      </a>
+    </div>
+
+  </section>
+
+  <section class="search-section">
+
+    <div class="search-box">
+      <div class="search-icon">🔍</div>
+
+      <input
       type="text"
-      id="search"
-      placeholder="Cari negara yang dituju"
-      onkeyup="filterCountry()"
-    >
-
-  </div>
-
-</div>
-
-<!-- LIST -->
-<div class="list" id="list">
-
-  <!-- AMERIKA -->
-  <div class="card"
-  data-name="amerika usa united states"
-  style="background-image:url(https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1200&q=80);">
-
-    <img class="flag" src="https://flagcdn.com/w80/us.png">
-
-    <div class="info">
-      <h3>Amerika</h3>
-      <p>Teknologi & peluang dunia</p>
+      id="searchInput"
+      placeholder="Cari negara tujuan wisata Anda..."
+      onkeyup="searchCountry()">
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+  </section>
 
-  </div>
+  <section class="stats">
 
-  <!-- KOREA -->
-  <div class="card"
-  data-name="korea selatan south korea"
-  style="background-image:url(https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=1200&q=80);">
-
-    <img class="flag" src="https://flagcdn.com/w80/kr.png">
-
-    <div class="info">
-      <h3>Korea</h3>
-      <p>K-pop & teknologi modern</p>
+    <div class="stat-card">
+      <h2>150+</h2>
+      <p>Negara tujuan populer tersedia untuk pengajuan visa internasional.</p>
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
-
-  </div>
-
-  <!-- JEPANG -->
-  <div class="card"
-  data-name="jepang japan"
-  style="background-image:url(https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80);">
-
-    <img class="flag" src="https://flagcdn.com/w80/jp.png">
-
-    <div class="info">
-      <h3>Jepang</h3>
-      <p>Budaya & teknologi maju</p>
+    <div class="stat-card">
+      <h2>98%</h2>
+      <p>Tingkat kepuasan pengguna dengan pengalaman layanan premium.</p>
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
-
-  </div>
-
-  <!-- BELANDA -->
-  <div class="card"
-  data-name="belanda netherlands"
-  style="background-image:url(https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1200&q=80);">
-
-    <img class="flag" src="https://flagcdn.com/w80/nl.png">
-
-    <div class="info">
-      <h3>Belanda</h3>
-      <p>Kanal & kota klasik</p>
+    <div class="stat-card">
+      <h2>24/7</h2>
+      <p>Dukungan pelanggan online untuk membantu proses perjalanan Anda.</p>
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
-
-  </div>
-
-  <!-- PRANCIS -->
-  <div class="card"
-  data-name="prancis france"
-  style="background-image:url(https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80);">
-
-    <img class="flag" src="https://flagcdn.com/w80/fr.png">
-
-    <div class="info">
-      <h3>Perancis</h3>
-      <p>Paris & Eiffel Tower</p>
+    <div class="stat-card">
+      <h2>1M+</h2>
+      <p>Pengguna aktif mempercayakan pengajuan visa melalui Visa ID.</p>
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+  </section>
 
+  <div class="section-title" id="destinations">
+    <div>
+      <h2>Destinasi Populer</h2>
+      <p>Pilih negara favorit untuk memulai perjalanan internasional Anda.</p>
+    </div>
   </div>
 
-  <!-- SWISS -->
-  <div class="card"
-  data-name="swiss switzerland"
-  style="background-image:url(https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1200&q=80);">
+  <section class="grid" id="cardGrid">
 
-    <img class="flag" src="https://flagcdn.com/w80/ch.png">
+    <div class="card"
+    data-name="amerika usa united states"
+    style="background-image:url('https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1400&q=80');">
 
-    <div class="info">
-      <h3>Swiss</h3>
-      <p>Pegunungan salju indah</p>
+      <img class="flag" src="https://flagcdn.com/w80/us.png">
+
+      <h2 class="card-country">Amerika</h2>
+
+      <p class="card-desc">
+        Nikmati pengalaman wisata modern, teknologi canggih, dan kota internasional terbaik dunia.
+      </p>
+
+      <div class="card-meta">
+        <div class="meta-badge">New York</div>
+        <div class="meta-badge">Los Angeles</div>
+        <div class="meta-badge">Premium</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+    <div class="card"
+    data-name="jepang japan"
+    style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=80');">
 
-  </div>
+      <img class="flag" src="https://flagcdn.com/w80/jp.png">
 
-  <!-- ITALIA -->
-  <div class="card"
-  data-name="italia italy"
-  style="background-image:url(https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=1200&q=80);">
+      <h2 class="card-country">Jepang</h2>
 
-    <img class="flag" src="https://flagcdn.com/w80/it.png">
+      <p class="card-desc">
+        Perpaduan budaya tradisional dan teknologi masa depan untuk wisata tak terlupakan.
+      </p>
 
-    <div class="info">
-      <h3>Italia</h3>
-      <p>Roma & wisata klasik</p>
+      <div class="card-meta">
+        <div class="meta-badge">Tokyo</div>
+        <div class="meta-badge">Kyoto</div>
+        <div class="meta-badge">Popular</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+    <div class="card"
+    data-name="korea selatan south korea"
+    style="background-image:url('https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=1400&q=80');">
 
-  </div>
+      <img class="flag" src="https://flagcdn.com/w80/kr.png">
 
-  <!-- JERMAN -->
-  <div class="card"
-  data-name="jerman germany"
-  style="background-image:url(https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80);">
+      <h2 class="card-country">Korea</h2>
 
-    <img class="flag" src="https://flagcdn.com/w80/de.png">
+      <p class="card-desc">
+        Destinasi modern dengan budaya K-Pop, kuliner terkenal, dan teknologi maju.
+      </p>
 
-    <div class="info">
-      <h3>Jerman</h3>
-      <p>Kota modern Eropa</p>
+      <div class="card-meta">
+        <div class="meta-badge">Seoul</div>
+        <div class="meta-badge">Busan</div>
+        <div class="meta-badge">Trending</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+    <div class="card"
+    data-name="singapura singapore"
+    style="background-image:url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1400&q=80');">
 
-  </div>
+      <img class="flag" src="https://flagcdn.com/w80/sg.png">
 
-  <!-- AUSTRALIA -->
-  <div class="card"
-  data-name="australia"
-  style="background-image:url(https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1200&q=80);">
+      <h2 class="card-country">Singapura</h2>
 
-    <img class="flag" src="https://flagcdn.com/w80/au.png">
+      <p class="card-desc">
+        Negara modern Asia dengan fasilitas premium dan pusat bisnis internasional.
+      </p>
 
-    <div class="info">
-      <h3>Australia</h3>
-      <p>Alam & kota modern</p>
+      <div class="card-meta">
+        <div class="meta-badge">Marina Bay</div>
+        <div class="meta-badge">Luxury</div>
+        <div class="meta-badge">Asia</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+    <div class="card"
+    data-name="perancis france"
+    style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=80');">
 
-  </div>
+      <img class="flag" src="https://flagcdn.com/w80/fr.png">
 
-  <!-- SINGAPURA -->
-  <div class="card"
-  data-name="singapura singapore"
-  style="background-image:url(https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1200&q=80);">
+      <h2 class="card-country">Perancis</h2>
 
-    <img class="flag" src="https://flagcdn.com/w80/sg.png">
+      <p class="card-desc">
+        Jelajahi Paris, menara Eiffel, dan suasana romantis khas Eropa premium.
+      </p>
 
-    <div class="info">
-      <h3>Singapura</h3>
-      <p>Negara modern Asia</p>
+      <div class="card-meta">
+        <div class="meta-badge">Paris</div>
+        <div class="meta-badge">Europe</div>
+        <div class="meta-badge">Luxury</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
     </div>
 
-    <a href="form.html" class="btn">
-      Ajukan Permohonan
-    </a>
+    <div class="card"
+    data-name="australia"
+    style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1400&q=80');">
 
-  </div>
+      <img class="flag" src="https://flagcdn.com/w80/au.png">
+
+      <h2 class="card-country">Australia</h2>
+
+      <p class="card-desc">
+        Pemandangan alam luar biasa dengan kota modern dan kualitas hidup terbaik.
+      </p>
+
+      <div class="card-meta">
+        <div class="meta-badge">Sydney</div>
+        <div class="meta-badge">Melbourne</div>
+        <div class="meta-badge">Nature</div>
+      </div>
+
+      <a href="form.html" class="card-button">
+        Ajukan Permohonan Visa
+      </a>
+
+    </div>
+
+  </section>
+
+  <footer class="footer">
+
+    <p>
+      © 2026 Visa ID Premium. All rights reserved.
+    </p>
+
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Support</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </footer>
 
 </div>
 
 <script>
 
-/* ===== TOGGLE MODE ===== */
+function searchCountry(){
 
-function toggleMode(){
-
-  document.body.classList.toggle("light");
-
-}
-
-/* ===== SEARCH ===== */
-
-function filterCountry(){
-
-  let input =
-  document.getElementById("search")
+  let input = document
+  .getElementById('searchInput')
   .value
   .toLowerCase();
 
-  let cards =
-  document.querySelectorAll(".card");
+  let cards = document
+  .querySelectorAll('.card');
 
   cards.forEach(card=>{
 
-    let name =
-    card.getAttribute("data-name");
+    let name = card
+    .getAttribute('data-name');
 
     if(name.includes(input)){
-
-      card.classList.remove("hide");
-
+      card.classList.remove('hide');
     }else{
-
-      card.classList.add("hide");
-
+      card.classList.add('hide');
     }
 
   });
