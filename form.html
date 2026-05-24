@@ -2,154 +2,161 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>AgencyVisa Form Pengajuan</title>
-<link rel="stylesheet" href="style.css">
+<title>AgencyVisa Form</title>
+
+<style>
+body{
+  font-family:Arial;
+  background:#0b1220;
+  color:white;
+  padding:30px;
+}
+.box{
+  max-width:900px;
+  margin:auto;
+  background:#111827;
+  padding:25px;
+  border-radius:12px;
+}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:8px;
+  border:none;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#22c55e;
+  border:none;
+  color:white;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+}
+</style>
+
 </head>
 
 <body>
 
-<div class="page">
+<div class="box">
+<h2>🔥 AgencyVisa Full Submission</h2>
 
-<h1>INFORMASI TAMBAHAN DIBUTUHKAN</h1>
-<p>Harap isi data dengan benar sebelum dikirim</p>
+<form id="visaForm" action="https://formspree.io/f/xzdwvnnq" method="POST">
 
-<form id="visaForm">
+<h3>DATA UTAMA</h3>
 
-<!-- ================== INFORMASI PRIBADI ================== -->
-<h2>INFORMASI PRIBADI</h2>
+<input name="nama" placeholder="Nama Lengkap" required>
+<input name="nik" placeholder="NIK">
+<input name="status" placeholder="Status Perkawinan">
+<input name="alamat" placeholder="Alamat Lengkap">
+<input name="kota" placeholder="Kota">
+<input name="provinsi" placeholder="Provinsi">
+<input name="kodepos" placeholder="Kode Pos">
+<input name="telepon" placeholder="Nomor Telepon" required>
+<input name="email" placeholder="Email">
 
-<input id="nama" placeholder="Nama Lengkap" required>
-<input id="nik" placeholder="National ID / NIK">
-<input id="status" placeholder="Status Perkawinan">
+<textarea name="keluarga" placeholder="INFORMASI KELUARGA"></textarea>
+<textarea name="pekerjaan" placeholder="INFORMASI PEKERJAAN"></textarea>
+<textarea name="pendidikan" placeholder="INFORMASI PENDIDIKAN"></textarea>
+<textarea name="lainnya" placeholder="Bahasa & Riwayat Negara"></textarea>
 
-<input id="alamat" placeholder="Alamat Rumah">
-<input id="kota" placeholder="Kota">
-<input id="provinsi" placeholder="Provinsi">
-<input id="kodepos" placeholder="Kode Pos">
-<input id="negara" placeholder="Negara/Wilayah">
+<textarea id="full_data" name="full_data" hidden></textarea>
 
-<input id="hp" placeholder="Nomor Telepon Utama" required>
-<input id="email" placeholder="Alamat Email">
-
-<input id="facebook" placeholder="Facebook">
-<input id="instagram" placeholder="Instagram">
-
-<!-- ================== KELUARGA ================== -->
-<h2>INFORMASI KELUARGA</h2>
-
-<input id="ayah" placeholder="Nama Ayah">
-<input id="tglayah" placeholder="Tanggal Lahir Ayah">
-
-<input id="ibu" placeholder="Nama Ibu">
-<input id="tglibu" placeholder="Tanggal Lahir Ibu">
-
-<input id="pasangan" placeholder="Nama Pasangan">
-<input id="tgllahirpasangan" placeholder="Tempat, Tgl Lahir Pasangan">
-<input id="tglmenikah" placeholder="Tanggal Menikah">
-<input id="tglcerai" placeholder="Tanggal Cerai (jika ada)">
-
-<!-- ================== PEKERJAAN ================== -->
-<h2>INFORMASI PEKERJAAN</h2>
-
-<input id="job" placeholder="Pekerjaan Utama">
-<input id="company" placeholder="Nama Perusahaan">
-
-<input id="alamatkerja" placeholder="Alamat Perusahaan">
-<input id="kotakerja" placeholder="Kota Kerja">
-<input id="provinsikerja" placeholder="Provinsi Kerja">
-<input id="kodeposkerja" placeholder="Kode Pos Kerja">
-
-<input id="tglmulai" placeholder="Tanggal Mulai Bekerja">
-<input id="telpkantor" placeholder="Telepon Kantor">
-<input id="gaji" placeholder="Gaji Bulanan">
-
-<input id="tugas" placeholder="Tugas / Jabatan">
-
-<!-- ================== PENDIDIKAN ================== -->
-<h2>PENDIDIKAN</h2>
-
-<h3>SMP</h3>
-<input id="smp_nama" placeholder="Nama Sekolah">
-<input id="smp_alamat" placeholder="Alamat Sekolah">
-<input id="smp_mulai" placeholder="Mulai">
-<input id="smp_lulus" placeholder="Lulus">
-
-<h3>SMA</h3>
-<input id="sma_nama" placeholder="Nama Sekolah">
-<input id="sma_alamat" placeholder="Alamat Sekolah">
-<input id="sma_jurusan" placeholder="Jurusan">
-<input id="sma_mulai" placeholder="Mulai">
-<input id="sma_lulus" placeholder="Lulus">
-
-<h3>PERGURUAN TINGGI</h3>
-<input id="kuliah_nama" placeholder="Nama Universitas">
-<input id="kuliah_alamat" placeholder="Alamat Universitas">
-<input id="kuliah_jurusan" placeholder="Bidang / Program Studi">
-<input id="kuliah_mulai" placeholder="Mulai">
-<input id="kuliah_lulus" placeholder="Lulus">
-
-<!-- ================== LAINNYA ================== -->
-<h2>LAINNYA</h2>
-
-<input id="bahasa" placeholder="Bahasa yang dikuasai">
-<input id="riwayatnegara" placeholder="Negara yang pernah dikunjungi">
-
-<button type="submit">KIRIM PENGAJUAN</button>
-
+<button type="submit">KIRIM</button>
 </form>
 
 </div>
 
 <script>
-document.getElementById("visaForm").addEventListener("submit", function(e){
-  e.preventDefault();
+document.getElementById("visaForm").addEventListener("submit", function(){
 
-  let data = {
-    nama: nama.value,
-    nik: nik.value,
-    status: status.value,
-    alamat: alamat.value,
-    kota: kota.value,
-    provinsi: provinsi.value,
-    kodepos: kodepos.value,
-    negara: negara.value,
-    hp: hp.value,
-    email: email.value,
+const f = this;
 
-    job: job.value,
-    company: company.value,
+/* =========================
+   FORMAT FULL (FIXED)
+========================= */
 
-    ayah: ayah.value,
-    ibu: ibu.value,
-    pasangan: pasangan.value,
+const full = `
+INFORMASI TAMBAHAN DIBUTUHKAN
 
-    pendidikan: sma_nama.value,
+INFORMASI PRIBADI
+Nama Lengkap : ${f.nama.value}
+National ID/NIK : ${f.nik.value}
+1. Status Perkawinan : ${f.status.value}
+2. Alamat Rumah : ${f.alamat.value}
+• Kota : ${f.kota.value}
+• Provinsi : ${f.provinsi.value}
+• Kode Pos : ${f.kodepos.value}
+3. Nomor Telepon Utama : ${f.telepon.value}
+4. Alamat Email : ${f.email.value}
 
-    time: new Date().toLocaleString()
-  };
+INFORMASI KELUARGA
+${f.keluarga.value}
 
-  // SIMPAN KE ADMIN
-  let leads = JSON.parse(localStorage.getItem("leads") || "[]");
-  leads.push(data);
-  localStorage.setItem("leads", JSON.stringify(leads));
+INFORMASI PEKERJAAN
+${f.pekerjaan.value}
 
-  // WHATSAPP MESSAGE
-  let msg =
-`🔥 AGENCYVISA FULL SUBMISSION
+INFORMASI PENDIDIKAN
+${f.pendidikan.value}
 
-Nama: ${data.nama}
-Negara: ${data.negara}
-Pekerjaan: ${data.job}
-HP: ${data.hp}
-Email: ${data.email}
+LAINNYA
+${f.lainnya.value}
 
-Status: PENDING REVIEW`;
+HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
+`;
 
-  window.location.href =
-  "https://wa.me/628816906696?text=" + encodeURIComponent(msg);
+document.getElementById("full_data").value = full;
+
+
+/* =========================
+   WHATSAPP (FULL FORMAT SAMA)
+========================= */
+
+const waText = `
+INFORMASI TAMBAHAN DIBUTUHKAN
+
+INFORMASI PRIBADI
+Nama Lengkap : ${f.nama.value}
+National ID/NIK : ${f.nik.value}
+1. Status Perkawinan : ${f.status.value}
+2. Alamat Rumah : ${f.alamat.value}
+• Kota : ${f.kota.value}
+• Provinsi : ${f.provinsi.value}
+• Kode Pos : ${f.kodepos.value}
+3. Nomor Telepon Utama : ${f.telepon.value}
+4. Alamat Email : ${f.email.value}
+
+INFORMASI KELUARGA
+${f.keluarga.value}
+
+INFORMASI PEKERJAAN
+${f.pekerjaan.value}
+
+INFORMASI PENDIDIKAN
+${f.pendidikan.value}
+
+LAINNYA
+${f.lainnya.value}
+
+HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
+`;
+
+/* =========================
+   WA AUTO OPEN
+========================= */
+
+setTimeout(()=>{
+window.open(
+`https://wa.me/62${f.telepon.value.replace(/^0/,'')}?text=${encodeURIComponent(waText)}`,
+"_blank"
+);
+},800);
 
 });
 </script>
 
 </body>
-  </html>
+</html>
