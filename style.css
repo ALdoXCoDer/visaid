@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #05060a;
+  color: white;
+}
+
+/* background glow */
+.bg {
+  position: fixed;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(0,140,255,0.2), transparent 60%);
+  filter: blur(120px);
+  top: -300px;
+  left: -300px;
+}
+
+/* header */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.logo {
+  font-weight: bold;
+  color: #4da3ff;
+}
+
+nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+/* hero */
+.hero {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-box {
+  text-align: center;
+  max-width: 700px;
+  padding: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* tag */
+.tag {
+  background: rgba(0,140,255,0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* buttons */
+.btn {
+  padding: 12px 18px;
+  margin: 5px;
+  display: inline-block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.outline {
+  border: 1px solid white;
+  color: white;
+}
+
+/* stats */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* page */
+.page {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+}
+
+/* card */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+
+/* warning */
+.warning {
+  border: 1px solid orange;
+}
+
+/* grid */
+.grid {
+  display: grid;
+  gap: 10px;
+}
+
+.country {
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  border-radius: 10px;
+}
