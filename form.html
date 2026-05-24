@@ -6,7 +6,7 @@
 
 <style>
 body{
-  font-family:Arial;
+  font-family: Arial;
   background:#0b1220;
   color:white;
   padding:30px;
@@ -44,54 +44,60 @@ button{
 <div class="box">
 <h2>🔥 AgencyVisa Full Submission</h2>
 
-<form id="visaForm" action="https://formspree.io/f/xzdwvnnq" method="POST">
+<form id="visaForm">
 
-<h3>DATA UTAMA</h3>
+<h3>INFORMASI PRIBADI</h3>
 
 <input name="nama" placeholder="Nama Lengkap" required>
 <input name="nik" placeholder="NIK">
 <input name="status" placeholder="Status Perkawinan">
-<input name="alamat" placeholder="Alamat Lengkap">
+<input name="alamat" placeholder="Alamat">
 <input name="kota" placeholder="Kota">
 <input name="provinsi" placeholder="Provinsi">
 <input name="kodepos" placeholder="Kode Pos">
-<input name="telepon" placeholder="Nomor Telepon" required>
+
+<input name="telepon" placeholder="Nomor Telepon (WA)" required>
 <input name="email" placeholder="Email">
 
-<textarea name="keluarga" placeholder="INFORMASI KELUARGA"></textarea>
-<textarea name="pekerjaan" placeholder="INFORMASI PEKERJAAN"></textarea>
-<textarea name="pendidikan" placeholder="INFORMASI PENDIDIKAN"></textarea>
-<textarea name="lainnya" placeholder="Bahasa & Riwayat Negara"></textarea>
+<h3>INFORMASI KELUARGA</h3>
+<textarea name="keluarga"></textarea>
 
-<textarea id="full_data" name="full_data" hidden></textarea>
+<h3>INFORMASI PEKERJAAN</h3>
+<textarea name="pekerjaan"></textarea>
 
-<button type="submit">KIRIM</button>
+<h3>INFORMASI PENDIDIKAN</h3>
+<textarea name="pendidikan"></textarea>
+
+<h3>LAINNYA</h3>
+<textarea name="lainnya"></textarea>
+
+<button type="submit">KIRIM PENGAJUAN</button>
+
 </form>
-
 </div>
 
 <script>
-document.getElementById("visaForm").addEventListener("submit", function(){
+document.getElementById("visaForm").addEventListener("submit", async function(e){
+  e.preventDefault();
 
-const f = this;
+  const f = this;
 
-/* =========================
-   FORMAT FULL (FIXED)
-========================= */
-
-const full = `
+  // =========================
+  // FORMAT FULL (EMAIL / ADMIN)
+  // =========================
+  const fullData = `
 INFORMASI TAMBAHAN DIBUTUHKAN
 
 INFORMASI PRIBADI
 Nama Lengkap : ${f.nama.value}
-National ID/NIK : ${f.nik.value}
-1. Status Perkawinan : ${f.status.value}
-2. Alamat Rumah : ${f.alamat.value}
-• Kota : ${f.kota.value}
-• Provinsi : ${f.provinsi.value}
-• Kode Pos : ${f.kodepos.value}
-3. Nomor Telepon Utama : ${f.telepon.value}
-4. Alamat Email : ${f.email.value}
+NIK : ${f.nik.value}
+Status Perkawinan : ${f.status.value}
+Alamat : ${f.alamat.value}
+Kota : ${f.kota.value}
+Provinsi : ${f.provinsi.value}
+Kode Pos : ${f.kodepos.value}
+Telepon : ${f.telepon.value}
+Email : ${f.email.value}
 
 INFORMASI KELUARGA
 ${f.keluarga.value}
@@ -108,26 +114,36 @@ ${f.lainnya.value}
 HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
 `;
 
-document.getElementById("full_data").value = full;
+  // =========================
+  // KIRIM KE FORMSPREE
+  // =========================
+  await fetch("https://formspree.io/f/xzdwvnnq", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: fullData
+    })
+  });
 
-
-/* =========================
-   WHATSAPP (FULL FORMAT SAMA)
-========================= */
-
-const waText = `
+  // =========================
+  // FORMAT WA (FULL SAMA)
+  // =========================
+  const waText = `
 INFORMASI TAMBAHAN DIBUTUHKAN
 
 INFORMASI PRIBADI
 Nama Lengkap : ${f.nama.value}
-National ID/NIK : ${f.nik.value}
-1. Status Perkawinan : ${f.status.value}
-2. Alamat Rumah : ${f.alamat.value}
-• Kota : ${f.kota.value}
-• Provinsi : ${f.provinsi.value}
-• Kode Pos : ${f.kodepos.value}
-3. Nomor Telepon Utama : ${f.telepon.value}
-4. Alamat Email : ${f.email.value}
+NIK : ${f.nik.value}
+Status Perkawinan : ${f.status.value}
+Alamat : ${f.alamat.value}
+Kota : ${f.kota.value}
+Provinsi : ${f.provinsi.value}
+Kode Pos : ${f.kodepos.value}
+Telepon : ${f.telepon.value}
+Email : ${f.email.value}
 
 INFORMASI KELUARGA
 ${f.keluarga.value}
@@ -144,16 +160,22 @@ ${f.lainnya.value}
 HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
 `;
 
-/* =========================
-   WA AUTO OPEN
-========================= */
+  // =========================
+  // FIX NOMOR WA INDONESIA
+  // =========================
+  let phone = f.telepon.value.replace(/\D/g,'');
 
-setTimeout(()=>{
-window.open(
-`https://wa.me/628816906696${f.telepon.value.replace(/^0/,'')}?text=${encodeURIComponent(waText)}`,
-"_blank"
-);
-},800);
+  if(phone.startsWith("0")){
+    phone = "62" + phone.substring(1);
+  }
+
+  if(!phone.startsWith("62")){
+    phone = "62" + phone;
+  }
+
+  // redirect WA
+  window.location.href =
+    `https://wa.me/${phone}?text=${encodeURIComponent(waText)}`;
 
 });
 </script>
