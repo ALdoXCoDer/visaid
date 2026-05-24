@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Visa App Premium</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visa ID</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,32 +20,41 @@
 
 body{
   background:#f4f5f7;
-  color:#111;
   overflow-x:hidden;
+  color:#111;
 }
 
-/* ===== BACKGROUND PESAWAT ASLI ===== */
+/* ===== BACKGROUND PESAWAT ===== */
 
 .bg-plane{
   position:fixed;
   inset:0;
   z-index:-2;
+
   background:
-  linear-gradient(rgba(255,255,255,0.90),rgba(255,255,255,0.92)),
-  url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1400&auto=format&fit=crop');
+  linear-gradient(rgba(255,255,255,0.88),rgba(255,255,255,0.92)),
+  url('https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg');
+
   background-size:cover;
   background-position:center;
-  filter:blur(1px);
+  background-repeat:no-repeat;
 }
 
-/* ===== OVERLAY ===== */
+/* ===== DARK MODE ===== */
 
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,0.15);
-  z-index:-1;
-  backdrop-filter:blur(1px);
+body.dark{
+  background:#0b1220;
+  color:white;
+}
+
+body.dark .bg-plane{
+  background:
+  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.76)),
+  url('https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg');
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
 /* ===== TOPBAR ===== */
@@ -53,11 +63,11 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 20px 10px;
+  padding:20px;
 }
 
 .logo{
-  font-size:20px;
+  font-size:24px;
   font-weight:700;
 }
 
@@ -67,34 +77,42 @@ body{
   color:white;
   padding:10px 14px;
   border-radius:14px;
-  font-size:12px;
   cursor:pointer;
   font-weight:600;
+}
+
+body.dark .toggle{
+  background:white;
+  color:black;
 }
 
 /* ===== HEADER ===== */
 
 .header{
   text-align:center;
-  padding:10px 20px 20px;
+  padding:10px 20px 25px;
 }
 
 .header h1{
   font-size:34px;
-  line-height:1.2;
+  line-height:1.3;
   font-weight:700;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .header p{
-  color:#666;
   font-size:14px;
+  color:#666;
+}
+
+body.dark .header p{
+  color:#d1d5db;
 }
 
 /* ===== SEARCH ===== */
 
 .search-wrap{
-  padding:0 18px 20px;
+  padding:0 18px 24px;
 }
 
 .search{
@@ -103,8 +121,8 @@ body{
   padding:14px 18px;
   display:flex;
   align-items:center;
-  gap:12px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+  gap:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
 }
 
 .search input{
@@ -115,10 +133,18 @@ body{
   font-size:14px;
 }
 
+body.dark .search{
+  background:#111827;
+}
+
+body.dark .search input{
+  color:white;
+}
+
 /* ===== GRID ===== */
 
 .list{
-  padding:0 18px 30px;
+  padding:0 18px 40px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
@@ -128,7 +154,7 @@ body{
 
 .card{
   position:relative;
-  height:260px;
+  height:250px;
   border-radius:28px;
   overflow:hidden;
   background-size:cover;
@@ -137,10 +163,9 @@ body{
   flex-direction:column;
   justify-content:flex-end;
   padding:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* overlay gelap */
 .card::before{
   content:'';
   position:absolute;
@@ -153,7 +178,6 @@ body{
   );
 }
 
-/* semua isi di atas overlay */
 .card > *{
   position:relative;
   z-index:2;
@@ -168,37 +192,37 @@ body{
   width:38px;
   height:38px;
   border-radius:12px;
-  object-fit:cover;
   border:2px solid rgba(255,255,255,0.8);
+  object-fit:cover;
 }
 
 /* ===== TEXT ===== */
 
 .info h3{
   color:white;
-  font-size:28px;
+  font-size:26px;
   font-weight:700;
   margin-bottom:5px;
 }
 
 .info p{
-  color:rgba(255,255,255,0.85);
+  color:rgba(255,255,255,0.9);
   font-size:13px;
-  margin-bottom:14px;
+  margin-bottom:15px;
 }
 
 /* ===== BUTTON ===== */
 
 .btn{
   width:100%;
+  background:white;
+  color:#111;
+  text-decoration:none;
+  padding:13px;
+  border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  text-decoration:none;
-  background:white;
-  color:#111;
-  padding:13px;
-  border-radius:18px;
   font-size:14px;
   font-weight:600;
 }
@@ -207,42 +231,10 @@ body{
   transform:scale(1.03);
 }
 
-/* ===== SEARCH FILTER ===== */
+/* ===== HIDE SEARCH ===== */
 
 .hide{
   display:none;
-}
-
-/* ===== DARK MODE ===== */
-
-body.dark{
-  background:#0b1220;
-  color:white;
-}
-
-body.dark .header p{
-  color:#c7c7c7;
-}
-
-body.dark .search{
-  background:#121826;
-}
-
-body.dark .search input{
-  color:white;
-}
-
-body.dark .toggle{
-  background:white;
-  color:black;
-}
-
-body.dark .bg-plane{
-  background:
-  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.75)),
-  url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1400&auto=format&fit=crop');
-  background-size:cover;
-  background-position:center;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -250,17 +242,11 @@ body.dark .bg-plane{
 @media(max-width:600px){
 
   .header h1{
-    font-size:26px;
-  }
-
-  .list{
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+    font-size:28px;
   }
 
   .card{
-    height:230px;
-    border-radius:24px;
+    height:220px;
   }
 
   .info h3{
@@ -272,38 +258,53 @@ body.dark .bg-plane{
 </style>
 </head>
 
-<body>
+<body class="light">
 
 <!-- BACKGROUND -->
 <div class="bg-plane"></div>
-<div class="overlay"></div>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="logo">🌍 Visa App</div>
+
+  <div class="logo">
+    🌍 Visa ID
+  </div>
 
   <button class="toggle" onclick="toggleMode()">
     Mode
   </button>
+
 </div>
 
 <!-- HEADER -->
 <div class="header">
-  <h1>Jelajahi Dunia dengan Layanan Visa Terbaik</h1>
-  <p>Pilih negara tujuan dan booking visa dengan cepat</p>
+
+  <h1>
+    Jelajahi Dunia dengan Layanan Visa Terbaik
+  </h1>
+
+  <p>
+    Booking visa cepat & mudah ke berbagai negara populer
+  </p>
+
 </div>
 
 <!-- SEARCH -->
 <div class="search-wrap">
+
   <div class="search">
+
     🔍
+
     <input
       type="text"
       id="search"
       placeholder="Cari negara yang dituju"
       onkeyup="filterCountry()"
-    />
+    >
+
   </div>
+
 </div>
 
 <!-- LIST -->
@@ -311,8 +312,8 @@ body.dark .bg-plane{
 
   <!-- AMERIKA -->
   <div class="card"
-    data-name="amerika usa united states"
-    style="background-image:url('https://images.unsplash.com/photo-1496588152823-e60ad99d9b39?q=80&w=1000&auto=format&fit=crop');">
+  data-name="amerika usa united states"
+  style="background-image:url('https://images.unsplash.com/photo-1496588152823-e60ad99d9b39?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/us.png">
 
@@ -324,12 +325,13 @@ body.dark .bg-plane{
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
   </div>
 
   <!-- KOREA -->
   <div class="card"
-    data-name="korea selatan south korea"
-    style="background-image:url('https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000&auto=format&fit=crop');">
+  data-name="korea selatan south korea"
+  style="background-image:url('https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/kr.png">
 
@@ -341,12 +343,13 @@ body.dark .bg-plane{
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
   </div>
 
   <!-- JEPANG -->
   <div class="card"
-    data-name="jepang japan"
-    style="background-image:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1000&auto=format&fit=crop');">
+  data-name="jepang japan"
+  style="background-image:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/jp.png">
 
@@ -358,12 +361,13 @@ body.dark .bg-plane{
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
   </div>
 
   <!-- BELANDA -->
   <div class="card"
-    data-name="belanda netherlands"
-    style="background-image:url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?q=80&w=1000&auto=format&fit=crop');">
+  data-name="belanda netherlands"
+  style="background-image:url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/nl.png">
 
@@ -375,58 +379,149 @@ body.dark .bg-plane{
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
   </div>
 
   <!-- PRANCIS -->
   <div class="card"
-    data-name="prancis france"
-    style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1000&auto=format&fit=crop');">
+  data-name="prancis france"
+  style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/fr.png">
 
     <div class="info">
       <h3>Perancis</h3>
-      <p>Paris & menara Eiffel</p>
+      <p>Paris & Eiffel Tower</p>
     </div>
 
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
   </div>
 
   <!-- SWISS -->
   <div class="card"
-    data-name="swiss swissland switzerland"
-    style="background-image:url('https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=1000&auto=format&fit=crop');">
+  data-name="swiss switzerland"
+  style="background-image:url('https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=1000&q=80');">
 
     <img class="flag" src="https://flagcdn.com/w80/ch.png">
 
     <div class="info">
       <h3>Swiss</h3>
-      <p>Pegunungan & salju indah</p>
+      <p>Pegunungan salju indah</p>
     </div>
 
     <a href="form.html" class="btn">
       Booking Sekarang →
     </a>
+
+  </div>
+
+  <!-- ITALIA -->
+  <div class="card"
+  data-name="italia italy"
+  style="background-image:url('https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=1000&q=80');">
+
+    <img class="flag" src="https://flagcdn.com/w80/it.png">
+
+    <div class="info">
+      <h3>Italia</h3>
+      <p>Roma & wisata klasik</p>
+    </div>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
+
+  </div>
+
+  <!-- JERMAN -->
+  <div class="card"
+  data-name="jerman germany"
+  style="background-image:url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1000&q=80');">
+
+    <img class="flag" src="https://flagcdn.com/w80/de.png">
+
+    <div class="info">
+      <h3>Jerman</h3>
+      <p>Kota modern Eropa</p>
+    </div>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
+
+  </div>
+
+  <!-- AUSTRALIA -->
+  <div class="card"
+  data-name="australia"
+  style="background-image:url('https://images.unsplash.com/photo-1506973035872-a4f23ef6b47a?auto=format&fit=crop&w=1000&q=80');">
+
+    <img class="flag" src="https://flagcdn.com/w80/au.png">
+
+    <div class="info">
+      <h3>Australia</h3>
+      <p>Alam & kota modern</p>
+    </div>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
+
+  </div>
+
+  <!-- SINGAPURA -->
+  <div class="card"
+  data-name="singapura singapore"
+  style="background-image:url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1000&q=80');">
+
+    <img class="flag" src="https://flagcdn.com/w80/sg.png">
+
+    <div class="info">
+      <h3>Singapura</h3>
+      <p>Negara modern Asia</p>
+    </div>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
+
+  </div>
+
+  <!-- TURKI -->
+  <div class="card"
+  data-name="turki turkey"
+  style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80');">
+
+    <img class="flag" src="https://flagcdn.com/w80/tr.png">
+
+    <div class="info">
+      <h3>Turki</h3>
+      <p>Sejarah & wisata unik</p>
+    </div>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
+
   </div>
 
 </div>
 
 <script>
 
-/* ===== DEFAULT MODE ===== */
-
-document.body.classList.add("light");
-
 /* ===== TOGGLE MODE ===== */
 
 function toggleMode(){
+
   document.body.classList.toggle("dark");
   document.body.classList.toggle("light");
+
 }
 
-/* ===== SEARCH FILTER ===== */
+/* ===== SEARCH ===== */
 
 function filterCountry(){
 
@@ -444,9 +539,13 @@ function filterCountry(){
     card.getAttribute("data-name");
 
     if(name.includes(input)){
+
       card.classList.remove("hide");
+
     }else{
+
       card.classList.add("hide");
+
     }
 
   });
@@ -456,4 +555,4 @@ function filterCountry(){
 </script>
 
 </body>
-  </html>
+</html>
