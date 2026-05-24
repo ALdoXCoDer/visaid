@@ -1,298 +1,459 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visa App</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Visa App Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Arial, sans-serif;
-  transition:0.2s;
+  font-family:'Poppins',sans-serif;
 }
 
-/* ===== THEME ===== */
-body.dark{
-  background:#0b1220;
-  color:white;
-}
-
-body.light{
-  background:#f4f6fb;
+body{
+  background:#f4f5f7;
   color:#111;
+  overflow-x:hidden;
 }
 
-/* SKY ANIMATION */
-.sky{
+/* ===== BACKGROUND PESAWAT ASLI ===== */
+
+.bg-plane{
   position:fixed;
-  width:100%;
-  height:100%;
+  inset:0;
+  z-index:-2;
+  background:
+  linear-gradient(rgba(255,255,255,0.90),rgba(255,255,255,0.92)),
+  url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1400&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  filter:blur(1px);
+}
+
+/* ===== OVERLAY ===== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.15);
   z-index:-1;
-  overflow:hidden;
+  backdrop-filter:blur(1px);
 }
 
-.plane{
-  position:absolute;
-  top:20%;
-  left:-200px;
-  font-size:35px;
-  animation:fly 14s linear infinite;
-}
+/* ===== TOPBAR ===== */
 
-.plane2{
-  top:65%;
-  font-size:25px;
-  animation-duration:20s;
-  opacity:0.5;
-}
-
-@keyframes fly{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(140vw);}
-}
-
-/* HEADER */
-.header{
-  padding:20px;
-  text-align:center;
-}
-
-.header h1{
-  font-size:22px;
-}
-
-.header p{
-  font-size:12px;
-  opacity:0.7;
-}
-
-/* TOP BAR */
 .topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 15px;
+  padding:18px 20px 10px;
 }
 
-/* SEARCH */
+.logo{
+  font-size:20px;
+  font-weight:700;
+}
+
+.toggle{
+  border:none;
+  background:#111827;
+  color:white;
+  padding:10px 14px;
+  border-radius:14px;
+  font-size:12px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* ===== HEADER ===== */
+
+.header{
+  text-align:center;
+  padding:10px 20px 20px;
+}
+
+.header h1{
+  font-size:34px;
+  line-height:1.2;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.header p{
+  color:#666;
+  font-size:14px;
+}
+
+/* ===== SEARCH ===== */
+
+.search-wrap{
+  padding:0 18px 20px;
+}
+
 .search{
-  margin:10px 15px;
-  padding:10px;
-  border-radius:12px;
+  background:white;
+  border-radius:20px;
+  padding:14px 18px;
   display:flex;
-  gap:10px;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
 }
-
-body.dark .search{ background:#121a2b; }
-body.light .search{ background:#fff; border:1px solid #ddd; }
 
 .search input{
   width:100%;
   border:none;
   outline:none;
-  background:transparent;
-  color:inherit;
-}
-
-/* TOGGLE */
-.toggle{
-  padding:6px 10px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  background:#00bcd4;
-  color:white;
-}
-
-/* LIST */
-.list{
-  padding:10px 15px 80px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-/* CARD */
-.card{
-  display:flex;
-  gap:12px;
-  padding:10px;
-  border-radius:16px;
-  align-items:center;
-}
-
-body.dark .card{ background:#121a2b; }
-body.light .card{ background:#fff; border:1px solid #ddd; }
-
-.card img{
-  width:65px;
-  height:65px;
-  border-radius:12px;
-}
-
-.info{
-  flex:1;
-}
-
-.info h3{
+  background:none;
   font-size:14px;
 }
 
-.info p{
-  font-size:11px;
-  opacity:0.7;
+/* ===== GRID ===== */
+
+.list{
+  padding:0 18px 30px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
 
-/* BUTTON */
-.btn{
-  padding:8px 10px;
-  border-radius:10px;
-  font-size:11px;
-  text-decoration:none;
+/* ===== CARD ===== */
+
+.card{
+  position:relative;
+  height:260px;
+  border-radius:28px;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* overlay gelap */
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.78),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.05)
+  );
+}
+
+/* semua isi di atas overlay */
+.card > *{
+  position:relative;
+  z-index:2;
+}
+
+/* ===== FLAG ===== */
+
+.flag{
+  position:absolute;
+  top:14px;
+  left:14px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,0.8);
+}
+
+/* ===== TEXT ===== */
+
+.info h3{
   color:white;
-  background:linear-gradient(135deg,#00bcd4,#2196f3);
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:5px;
 }
 
-/* HIDE (SEARCH FILTER) */
+.info p{
+  color:rgba(255,255,255,0.85);
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+/* ===== BUTTON ===== */
+
+.btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  background:white;
+  color:#111;
+  padding:13px;
+  border-radius:18px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+}
+
+/* ===== SEARCH FILTER ===== */
+
 .hide{
   display:none;
 }
+
+/* ===== DARK MODE ===== */
+
+body.dark{
+  background:#0b1220;
+  color:white;
+}
+
+body.dark .header p{
+  color:#c7c7c7;
+}
+
+body.dark .search{
+  background:#121826;
+}
+
+body.dark .search input{
+  color:white;
+}
+
+body.dark .toggle{
+  background:white;
+  color:black;
+}
+
+body.dark .bg-plane{
+  background:
+  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.75)),
+  url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1400&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:600px){
+
+  .header h1{
+    font-size:26px;
+  }
+
+  .list{
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .card{
+    height:230px;
+    border-radius:24px;
+  }
+
+  .info h3{
+    font-size:22px;
+  }
+
+}
+
 </style>
 </head>
 
-<body class="dark">
+<body>
 
-<!-- SKY -->
-<div class="sky">
-  <div class="plane">✈️</div>
-  <div class="plane plane2">✈️</div>
-</div>
+<!-- BACKGROUND -->
+<div class="bg-plane"></div>
+<div class="overlay"></div>
 
-<!-- TOP BAR -->
+<!-- TOPBAR -->
 <div class="topbar">
-  <h3>🌍 Visa App</h3>
-  <button class="toggle" onclick="toggleMode()">Mode</button>
+  <div class="logo">🌍 Visa App</div>
+
+  <button class="toggle" onclick="toggleMode()">
+    Mode
+  </button>
 </div>
 
 <!-- HEADER -->
 <div class="header">
-  <h1>Pilih Negara</h1>
-  <p>Ajukan visa dengan cepat</p>
+  <h1>Jelajahi Dunia dengan Layanan Visa Terbaik</h1>
+  <p>Pilih negara tujuan dan booking visa dengan cepat</p>
 </div>
 
 <!-- SEARCH -->
-<div class="search">
-  🔎
-  <input type="text" id="search" placeholder="Cari negara..." onkeyup="filterCountry()">
+<div class="search-wrap">
+  <div class="search">
+    🔍
+    <input
+      type="text"
+      id="search"
+      placeholder="Cari negara yang dituju"
+      onkeyup="filterCountry()"
+    />
+  </div>
 </div>
 
 <!-- LIST -->
 <div class="list" id="list">
 
-  <div class="card" data-name="amerika usa united states">
-    <img src="https://flagcdn.com/w320/us.png">
+  <!-- AMERIKA -->
+  <div class="card"
+    data-name="amerika usa united states"
+    style="background-image:url('https://images.unsplash.com/photo-1496588152823-e60ad99d9b39?q=80&w=1000&auto=format&fit=crop');">
+
+    <img class="flag" src="https://flagcdn.com/w80/us.png">
+
     <div class="info">
-      <h3>Amerika Serikat</h3>
+      <h3>Amerika</h3>
       <p>Teknologi & peluang dunia</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
-  <div class="card" data-name="australia">
-    <img src="https://flagcdn.com/w320/au.png">
+  <!-- KOREA -->
+  <div class="card"
+    data-name="korea selatan south korea"
+    style="background-image:url('https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000&auto=format&fit=crop');">
+
+    <img class="flag" src="https://flagcdn.com/w80/kr.png">
+
     <div class="info">
-      <h3>Australia</h3>
-      <p>Negara modern & alam indah</p>
+      <h3>Korea</h3>
+      <p>K-pop & teknologi modern</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
-  <div class="card" data-name="jepang japan">
-    <img src="https://flagcdn.com/w320/jp.png">
+  <!-- JEPANG -->
+  <div class="card"
+    data-name="jepang japan"
+    style="background-image:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1000&auto=format&fit=crop');">
+
+    <img class="flag" src="https://flagcdn.com/w80/jp.png">
+
     <div class="info">
       <h3>Jepang</h3>
-      <p>Teknologi & budaya</p>
+      <p>Budaya & teknologi maju</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
-  <div class="card" data-name="belanda netherlands">
-    <img src="https://flagcdn.com/w320/nl.png">
+  <!-- BELANDA -->
+  <div class="card"
+    data-name="belanda netherlands"
+    style="background-image:url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?q=80&w=1000&auto=format&fit=crop');">
+
+    <img class="flag" src="https://flagcdn.com/w80/nl.png">
+
     <div class="info">
       <h3>Belanda</h3>
-      <p>Kanal & bunga tulip</p>
+      <p>Kanal & kota klasik</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
-  <div class="card" data-name="malaysia">
-    <img src="https://flagcdn.com/w320/my.png">
+  <!-- PRANCIS -->
+  <div class="card"
+    data-name="prancis france"
+    style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1000&auto=format&fit=crop');">
+
+    <img class="flag" src="https://flagcdn.com/w80/fr.png">
+
     <div class="info">
-      <h3>Malaysia</h3>
-      <p>Negara tetangga Indonesia</p>
+      <h3>Perancis</h3>
+      <p>Paris & menara Eiffel</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
-  <div class="card" data-name="korea selatan south korea">
-    <img src="https://flagcdn.com/w320/kr.png">
-    <div class="info">
-      <h3>Korea Selatan</h3>
-      <p>K-Pop & teknologi</p>
-    </div>
-    <a href="form.html" class="btn">Apply</a>
-  </div>
+  <!-- SWISS -->
+  <div class="card"
+    data-name="swiss swissland switzerland"
+    style="background-image:url('https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=1000&auto=format&fit=crop');">
 
-  <div class="card" data-name="singapura singapore">
-    <img src="https://flagcdn.com/w320/sg.png">
-    <div class="info">
-      <h3>Singapura</h3>
-      <p>Negara modern Asia</p>
-    </div>
-    <a href="form.html" class="btn">Apply</a>
-  </div>
+    <img class="flag" src="https://flagcdn.com/w80/ch.png">
 
-  <div class="card" data-name="uae dubai uni emirat arab">
-    <img src="https://flagcdn.com/w320/ae.png">
     <div class="info">
-      <h3>Uni Emirat Arab</h3>
-      <p>Dubai & gedung futuristik</p>
+      <h3>Swiss</h3>
+      <p>Pegunungan & salju indah</p>
     </div>
-    <a href="form.html" class="btn">Apply</a>
+
+    <a href="form.html" class="btn">
+      Booking Sekarang →
+    </a>
   </div>
 
 </div>
 
 <script>
 
-/* ===== DARK / LIGHT MODE ===== */
+/* ===== DEFAULT MODE ===== */
+
+document.body.classList.add("light");
+
+/* ===== TOGGLE MODE ===== */
+
 function toggleMode(){
-  document.body.classList.toggle("light");
   document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 }
 
-/* default */
-document.body.classList.add("dark");
-
 /* ===== SEARCH FILTER ===== */
+
 function filterCountry(){
-  let input = document.getElementById("search").value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
+
+  let input =
+  document.getElementById("search")
+  .value
+  .toLowerCase();
+
+  let cards =
+  document.querySelectorAll(".card");
 
   cards.forEach(card=>{
-    let name = card.getAttribute("data-name");
-    if(name.toLowerCase().includes(input)){
+
+    let name =
+    card.getAttribute("data-name");
+
+    if(name.includes(input)){
       card.classList.remove("hide");
-    } else {
+    }else{
       card.classList.add("hide");
     }
+
   });
+
 }
 
 </script>
 
 </body>
-</html>
+  </html>
