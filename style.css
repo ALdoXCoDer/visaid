@@ -520,3 +520,11 @@ nav{
 }
 
 }
+
+/* SOCIAL ICON IMAGE */
+
+.social img{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+}
