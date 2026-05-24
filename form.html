@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>AgencyVisa Form</title>
+<title>AgencyVisa Submission</title>
 
 <style>
 body{
@@ -11,7 +11,7 @@ body{
   color:white;
   padding:30px;
 }
-.box{
+.container{
   max-width:900px;
   margin:auto;
   background:#111827;
@@ -35,14 +35,17 @@ button{
   border-radius:8px;
   cursor:pointer;
 }
+h2,h3{
+  color:#22c55e;
+}
 </style>
 
 </head>
 
 <body>
 
-<div class="box">
-<h2>🔥 AgencyVisa Full Submission</h2>
+<div class="container">
+<h2>🔥 AGENCY VISA - SUBMISSION FORM</h2>
 
 <form id="visaForm">
 
@@ -51,13 +54,13 @@ button{
 <input name="nama" placeholder="Nama Lengkap" required>
 <input name="nik" placeholder="NIK">
 <input name="status" placeholder="Status Perkawinan">
-<input name="alamat" placeholder="Alamat">
+<input name="alamat" placeholder="Alamat Lengkap">
 <input name="kota" placeholder="Kota">
 <input name="provinsi" placeholder="Provinsi">
 <input name="kodepos" placeholder="Kode Pos">
 
-<input name="telepon" placeholder="Nomor Telepon (WA)" required>
-<input name="email" placeholder="Email">
+<input name="telepon" placeholder="Nomor Telepon Client" required>
+<input name="email" placeholder="Email Client">
 
 <h3>INFORMASI KELUARGA</h3>
 <textarea name="keluarga"></textarea>
@@ -83,10 +86,10 @@ document.getElementById("visaForm").addEventListener("submit", async function(e)
   const f = this;
 
   // =========================
-  // FORMAT FULL (EMAIL / ADMIN)
+  // FULL FORMAT (EMAIL + ADMIN)
   // =========================
   const fullData = `
-INFORMASI TAMBAHAN DIBUTUHKAN
+🔥 AGENCYVISA FULL SUBMISSION
 
 INFORMASI PRIBADI
 Nama Lengkap : ${f.nama.value}
@@ -96,8 +99,9 @@ Alamat : ${f.alamat.value}
 Kota : ${f.kota.value}
 Provinsi : ${f.provinsi.value}
 Kode Pos : ${f.kodepos.value}
-Telepon : ${f.telepon.value}
-Email : ${f.email.value}
+
+Telepon Client : ${f.telepon.value}
+Email Client : ${f.email.value}
 
 INFORMASI KELUARGA
 ${f.keluarga.value}
@@ -111,7 +115,7 @@ ${f.pendidikan.value}
 LAINNYA
 ${f.lainnya.value}
 
-HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
+STATUS: NEW VISA APPLICATION
 `;
 
   // =========================
@@ -129,53 +133,12 @@ HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
   });
 
   // =========================
-  // FORMAT WA (FULL SAMA)
+  // WHATSAPP ADMIN (KAMU)
   // =========================
-  const waText = `
-INFORMASI TAMBAHAN DIBUTUHKAN
+  const adminWA = "628816906696";
 
-INFORMASI PRIBADI
-Nama Lengkap : ${f.nama.value}
-NIK : ${f.nik.value}
-Status Perkawinan : ${f.status.value}
-Alamat : ${f.alamat.value}
-Kota : ${f.kota.value}
-Provinsi : ${f.provinsi.value}
-Kode Pos : ${f.kodepos.value}
-Telepon : ${f.telepon.value}
-Email : ${f.email.value}
-
-INFORMASI KELUARGA
-${f.keluarga.value}
-
-INFORMASI PEKERJAAN
-${f.pekerjaan.value}
-
-INFORMASI PENDIDIKAN
-${f.pendidikan.value}
-
-LAINNYA
-${f.lainnya.value}
-
-HARAP PERIKSA KEMBALI SEBELUM DIKIRIM
-`;
-
-  // =========================
-  // FIX NOMOR WA INDONESIA
-  // =========================
-  let phone = f.telepon.value.replace(/\D/g,'');
-
-  if(phone.startsWith("0")){
-    phone = "62" + phone.substring(1);
-  }
-
-  if(!phone.startsWith("62")){
-    phone = "62" + phone;
-  }
-
-  // redirect WA
   window.location.href =
-    `https://wa.me/${phone}?text=${encodeURIComponent(waText)}`;
+    `https://wa.me/${adminWA}?text=${encodeURIComponent(fullData)}`;
 
 });
 </script>
