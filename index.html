@@ -1,59 +1,1323 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>AgencyVisa - Visa Assistance Platform</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visa ID Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+RESET
+========================================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#030712;
+overflow-x:hidden;
+color:white;
+}
+
+/* =========================================================
+LOADING SCREEN
+========================================================= */
+
+#loader{
+position:fixed;
+inset:0;
+background:#020617;
+z-index:999999;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:25px;
+transition:1s;
+}
+
+.loader-logo{
+font-size:60px;
+animation:plane 2s infinite ease-in-out;
+}
+
+@keyframes plane{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+.loader-text{
+font-size:36px;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.loader-bar{
+width:260px;
+height:10px;
+border-radius:999px;
+background:rgba(255,255,255,0.08);
+overflow:hidden;
+}
+
+.loader-fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#2563eb,#06b6d4);
+animation:loading 3s forwards;
+}
+
+@keyframes loading{
+0%{width:0%;}
+100%{width:100%;}
+}
+
+/* =========================================================
+VIDEO BACKGROUND
+========================================================= */
+
+.video-bg{
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-5;
+}
+
+.video-bg video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:
+linear-gradient(
+rgba(0,0,0,0.65),
+rgba(0,0,0,0.75)
+);
+z-index:-4;
+}
+
+/* =========================================================
+AURORA EFFECT
+========================================================= */
+
+.blur1,
+.blur2{
+position:fixed;
+width:500px;
+height:500px;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.25;
+z-index:-3;
+}
+
+.blur1{
+background:#2563eb;
+top:-150px;
+left:-100px;
+}
+
+.blur2{
+background:#06b6d4;
+bottom:-150px;
+right:-100px;
+}
+
+/* =========================================================
+NAVBAR
+========================================================= */
+
+.navbar{
+width:100%;
+padding:25px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+backdrop-filter:blur(18px);
+background:rgba(0,0,0,0.18);
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-icon{
+width:60px;
+height:60px;
+border-radius:22px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+font-size:28px;
+box-shadow:0 15px 40px rgba(37,99,235,0.45);
+}
+
+.logo h1{
+font-size:30px;
+font-weight:800;
+}
+
+.logo p{
+font-size:12px;
+opacity:0.7;
+}
+
+.nav-right{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.lang-select{
+padding:12px 18px;
+border:none;
+border-radius:16px;
+background:rgba(255,255,255,0.08);
+color:white;
+font-weight:600;
+backdrop-filter:blur(15px);
+outline:none;
+}
+
+.nav-btn{
+padding:13px 22px;
+border-radius:18px;
+border:none;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+color:white;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+.nav-btn:hover{
+transform:translateY(-4px);
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero{
+padding:120px 40px 80px;
+text-align:center;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:14px 22px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:999px;
+backdrop-filter:blur(16px);
+margin-bottom:30px;
+font-weight:600;
+}
+
+.hero h1{
+font-size:78px;
+font-weight:900;
+line-height:1.1;
+margin-bottom:28px;
+}
+
+.hero p{
+max-width:950px;
+margin:auto;
+font-size:18px;
+line-height:1.9;
+opacity:0.82;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:18px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.hero-btn{
+padding:18px 32px;
+border-radius:22px;
+text-decoration:none;
+font-weight:700;
+transition:0.3s;
+}
+
+.primary{
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+color:white;
+box-shadow:0 18px 45px rgba(37,99,235,0.35);
+}
+
+.secondary{
+background:rgba(255,255,255,0.08);
+color:white;
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.hero-btn:hover{
+transform:translateY(-6px);
+}
+
+/* =========================================================
+LIVE COUNTER
+========================================================= */
+
+.live-section{
+padding:20px 40px 50px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
+}
+
+.live-card{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+padding:35px;
+border-radius:32px;
+transition:0.4s;
+}
+
+.live-card:hover{
+transform:translateY(-8px);
+}
+
+.live-card h2{
+font-size:42px;
+margin-bottom:10px;
+font-weight:800;
+}
+
+.live-card p{
+opacity:0.75;
+line-height:1.8;
+}
+
+/* =========================================================
+SEARCH
+========================================================= */
+
+.search-wrap{
+padding:20px 40px 50px;
+}
+
+.search-box{
+width:100%;
+padding:24px 28px;
+border-radius:28px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.search-box input{
+width:100%;
+background:none;
+border:none;
+outline:none;
+font-size:17px;
+color:white;
+}
+
+.search-box input::placeholder{
+color:rgba(255,255,255,0.55);
+}
+
+/* =========================================================
+TITLE
+========================================================= */
+
+.section-title{
+padding:10px 40px 30px;
+}
+
+.section-title h2{
+font-size:46px;
+font-weight:900;
+margin-bottom:10px;
+}
+
+.section-title p{
+opacity:0.76;
+font-size:16px;
+}
+
+/* =========================================================
+COUNTRY GRID
+========================================================= */
+
+.grid{
+padding:0 40px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:28px;
+}
+
+.card{
+height:450px;
+border-radius:36px;
+overflow:hidden;
+position:relative;
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+padding:28px;
+transition:0.45s;
+transform-style:preserve-3d;
+box-shadow:0 25px 45px rgba(0,0,0,0.35);
+}
+
+.card::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+to top,
+rgba(0,0,0,0.95),
+rgba(0,0,0,0.30),
+rgba(0,0,0,0.05)
+);
+}
+
+.card>*{
+position:relative;
+z-index:2;
+}
+
+.card:hover{
+transform:
+rotateX(6deg)
+rotateY(-6deg)
+translateY(-12px)
+scale(1.02);
+}
+
+.flag{
+position:absolute;
+top:22px;
+left:22px;
+width:60px;
+height:60px;
+border-radius:18px;
+border:3px solid rgba(255,255,255,0.9);
+object-fit:cover;
+}
+
+.card h3{
+font-size:38px;
+font-weight:900;
+margin-bottom:12px;
+}
+
+.card p{
+line-height:1.8;
+opacity:0.82;
+margin-bottom:24px;
+}
+
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-bottom:22px;
+}
+
+.tag{
+padding:10px 16px;
+border-radius:999px;
+background:rgba(255,255,255,0.10);
+border:1px solid rgba(255,255,255,0.08);
+font-size:12px;
+}
+
+.card-btn{
+width:100%;
+padding:18px;
+border-radius:22px;
+background:white;
+color:#111827;
+text-decoration:none;
+font-weight:800;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:0.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.02);
+}
+
+.hide{
+display:none;
+}
+
+/* =========================================================
+CHAT AI
+========================================================= */
+
+.ai-btn{
+position:fixed;
+right:30px;
+bottom:30px;
+width:82px;
+height:82px;
+border-radius:50%;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:36px;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 25px 50px rgba(37,99,235,0.45);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(37,99,235,0.45);
+}
+
+70%{
+transform:scale(1.08);
+box-shadow:0 0 0 28px rgba(37,99,235,0);
+}
+
+100%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(37,99,235,0);
+}
+}
+
+.chat-box{
+position:fixed;
+right:30px;
+bottom:130px;
+width:360px;
+padding:26px;
+border-radius:32px;
+background:rgba(7,12,22,0.96);
+backdrop-filter:blur(22px);
+border:1px solid rgba(255,255,255,0.08);
+display:none;
+z-index:9999;
+box-shadow:0 25px 55px rgba(0,0,0,0.45);
+}
+
+.chat-box h3{
+font-size:28px;
+margin-bottom:12px;
+}
+
+.chat-box p{
+opacity:0.76;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+.chat-box input{
+width:100%;
+padding:16px;
+border:none;
+outline:none;
+border-radius:18px;
+background:rgba(255,255,255,0.08);
+color:white;
+margin-bottom:15px;
+}
+
+.chat-box button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+/* =========================================================
+CONTACT
+========================================================= */
+
+.contact{
+padding:100px 40px 50px;
+}
+
+.contact-box{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-radius:38px;
+padding:50px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:40px;
+}
+
+.contact h2{
+font-size:42px;
+font-weight:900;
+margin-bottom:20px;
+}
+
+.contact p{
+line-height:1.9;
+opacity:0.78;
+margin-bottom:28px;
+}
+
+.contact-btn{
+display:flex;
+align-items:center;
+gap:16px;
+padding:18px 24px;
+border-radius:22px;
+text-decoration:none;
+color:white;
+font-weight:700;
+margin-bottom:18px;
+}
+
+.wa{
+background:#25D366;
+}
+
+.mail{
+background:rgba(255,255,255,0.10);
+}
+
+.socials{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.social{
+width:78px;
+height:78px;
+border-radius:24px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.social:hover{
+transform:translateY(-8px);
+}
+
+.ig{
+background:linear-gradient(135deg,#833AB4,#FD1D1D,#FCB045);
+}
+
+.fb{
+background:#1877F2;
+}
+
+.tt{
+background:black;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.yt{
+background:red;
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer{
+padding:35px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:20px;
+border-top:1px solid rgba(255,255,255,0.08);
+margin-top:60px;
+}
+
+footer p{
+opacity:0.72;
+}
+
+/* =========================================================
+SCROLL REVEAL
+========================================================= */
+
+.reveal{
+opacity:0;
+transform:translateY(80px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.live-section{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:48px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.live-section{
+grid-template-columns:1fr;
+}
+
+.contact-box{
+grid-template-columns:1fr;
+}
+
+.chat-box{
+width:92%;
+right:4%;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+<!-- =========================================================
+LOADER
+========================================================= -->
 
-<header>
-  <div class="logo">AgencyVisa</div>
-  <nav>
-    <a href="edukasi.html">Layanan</a>
-    <a href="negara.html">Ajukan Visa</a>
-  </nav>
-</header>
+<div id="loader">
 
-<section class="hero">
+<div class="loader-logo">✈️</div>
 
-  <div class="hero-box">
+<div class="loader-text">
+Visa ID
+</div>
 
-    <span class="tag">Platform Bantuan Visa Digital</span>
+<div class="loader-bar">
+<div class="loader-fill"></div>
+</div>
 
-    <h1>Proses Visa Lebih Rapi, Cepat, dan Terarah</h1>
+</div>
 
-    <p>
-      Kami membantu proses pengisian data visa, checklist dokumen,
-      dan persiapan pengajuan ke berbagai negara secara sistematis.
-    </p>
+<!-- =========================================================
+VIDEO BACKGROUND
+========================================================= -->
 
-    <div class="cta">
-      <a class="btn outline" href="edukasi.html">Pelajari Layanan</a>
-      <a class="btn primary" href="negara.html">Mulai Sekarang</a>
-    </div>
+<div class="video-bg">
 
-    <div class="stats">
-      <div>
-        <h3>100+</h3>
-        <p>Negara</p>
-      </div>
-      <div>
-        <h3>Digital</h3>
-        <p>Sistem Online</p>
-      </div>
-      <div>
-        <h3>Fast</h3>
-        <p>Proses Terstruktur</p>
-      </div>
-    </div>
+<video autoplay muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-airplane-window-view-1560082262613?download=1080p" type="video/mp4">
+</video>
 
-  </div>
+</div>
+
+<div class="overlay"></div>
+
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<!-- =========================================================
+NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div class="logo-icon">
+✈️
+</div>
+
+<div>
+<h1>Visa ID</h1>
+<p>Premium International Travel</p>
+</div>
+
+</div>
+
+<div class="nav-right">
+
+<select class="lang-select">
+<option>🇮🇩 Indonesia</option>
+<option>🇺🇸 English</option>
+<option>🇯🇵 Japanese</option>
+<option>🇰🇷 Korean</option>
+</select>
+
+<button class="nav-btn">
+Get Started
+</button>
+
+</div>
+
+</nav>
+
+<!-- =========================================================
+HERO
+========================================================= -->
+
+<section class="hero reveal">
+
+<div class="badge">
+🌍 Trusted International Visa Platform
+</div>
+
+<h1>
+Explore The World<br>
+With Visa ID Premium
+</h1>
+
+<p>
+Visa ID membantu perjalanan internasional Anda dengan sistem pengajuan visa modern, tampilan premium, AI Assistant, dan pengalaman kelas internasional.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#countries" class="hero-btn primary">
+Mulai Pengajuan
+</a>
+
+<a href="negara.html" class="hero-btn secondary">
+Lihat Negara Populer
+</a>
+
+</div>
 
 </section>
+
+<!-- =========================================================
+LIVE COUNTER
+========================================================= -->
+
+<section class="live-section reveal">
+
+<div class="live-card">
+<h2 id="counter1">0</h2>
+<p>Visa approved hari ini secara global.</p>
+</div>
+
+<div class="live-card">
+<h2 id="counter2">0</h2>
+<p>Pengguna sedang online sekarang.</p>
+</div>
+
+<div class="live-card">
+<h2 id="counter3">0</h2>
+<p>Pengajuan diproses setiap jam.</p>
+</div>
+
+<div class="live-card">
+<h2 id="counter4">0</h2>
+<p>Negara populer tersedia.</p>
+</div>
+
+</section>
+
+<!-- =========================================================
+SEARCH
+========================================================= -->
+
+<section class="search-wrap reveal">
+
+<div class="search-box">
+
+<div>🔍</div>
+
+<input
+type="text"
+id="search"
+placeholder="Cari negara tujuan wisata..."
+onkeyup="searchCountry()">
+
+</div>
+
+</section>
+
+<!-- =========================================================
+TITLE
+========================================================= -->
+
+<div class="section-title reveal">
+
+<h2>
+Destinasi Premium
+</h2>
+
+<p>
+Negara paling populer dan sering dikunjungi wisatawan internasional.
+</p>
+
+</div>
+
+<!-- =========================================================
+COUNTRIES
+========================================================= -->
+
+<section class="grid" id="countries">
+
+<!-- USA -->
+
+<div class="card reveal"
+data-name="amerika usa united states"
+style="background-image:url('https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/us.png">
+
+<h3>Amerika</h3>
+
+<p>
+Kota modern, teknologi maju, dan destinasi internasional terbaik dunia.
+</p>
+
+<div class="tags">
+<div class="tag">New York</div>
+<div class="tag">Los Angeles</div>
+<div class="tag">Luxury</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+<!-- JAPAN -->
+
+<div class="card reveal"
+data-name="jepang japan"
+style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/jp.png">
+
+<h3>Jepang</h3>
+
+<p>
+Perpaduan budaya tradisional dan teknologi masa depan yang unik.
+</p>
+
+<div class="tags">
+<div class="tag">Tokyo</div>
+<div class="tag">Kyoto</div>
+<div class="tag">Popular</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+<!-- KOREA -->
+
+<div class="card reveal"
+data-name="korea south korea"
+style="background-image:url('https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/kr.png">
+
+<h3>Korea</h3>
+
+<p>
+Destinasi modern dengan budaya K-Pop dan wisata futuristik Asia.
+</p>
+
+<div class="tags">
+<div class="tag">Seoul</div>
+<div class="tag">Busan</div>
+<div class="tag">Trending</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+<!-- FRANCE -->
+
+<div class="card reveal"
+data-name="france perancis"
+style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/fr.png">
+
+<h3>Perancis</h3>
+
+<p>
+Paris, Eiffel, dan suasana romantis khas Eropa premium dunia.
+</p>
+
+<div class="tags">
+<div class="tag">Paris</div>
+<div class="tag">Europe</div>
+<div class="tag">Luxury</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+<!-- AUSTRALIA -->
+
+<div class="card reveal"
+data-name="australia"
+style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/au.png">
+
+<h3>Australia</h3>
+
+<p>
+Pemandangan alam luar biasa dengan kualitas hidup terbaik dunia.
+</p>
+
+<div class="tags">
+<div class="tag">Sydney</div>
+<div class="tag">Nature</div>
+<div class="tag">Modern</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+<!-- DUBAI -->
+
+<div class="card reveal"
+data-name="dubai uae"
+style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80');">
+
+<img class="flag" src="https://flagcdn.com/w80/ae.png">
+
+<h3>Dubai</h3>
+
+<p>
+Gedung futuristik, lifestyle mewah, dan pusat wisata premium dunia.
+</p>
+
+<div class="tags">
+<div class="tag">Burj Khalifa</div>
+<div class="tag">Luxury</div>
+<div class="tag">Modern</div>
+</div>
+
+<a href="form.html" class="card-btn">
+Ajukan Permohonan Visa
+</a>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+CONTACT
+========================================================= -->
+
+<section class="contact reveal">
+
+<div class="contact-box">
+
+<div>
+
+<h2>
+Hubungi Kami
+</h2>
+
+<p>
+Visa ID siap membantu proses pengajuan visa internasional Anda dengan layanan premium dan dukungan profesional.
+</p>
+
+<a href="https://wa.me/628816906696" class="contact-btn wa">
+📱 WhatsApp Customer Service
+</a>
+
+<a href="mailto:aldoraffy26@gmail.com" class="contact-btn mail">
+✉️ aldoraffy26@gmail.com
+</a>
+
+</div>
+
+<div>
+
+<h2>
+Social Media
+</h2>
+
+<p>
+Ikuti update terbaru mengenai perjalanan internasional dan promo visa premium dunia.
+</p>
+
+<div class="socials">
+
+<div class="social ig">
+📸
+</div>
+
+<div class="social fb">
+👍
+</div>
+
+<div class="social tt">
+🎵
+</div>
+
+<div class="social yt">
+▶️
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+FOOTER
+========================================================= -->
+
+<footer>
+
+<p>
+© 2026 Visa ID Premium. All Rights Reserved.
+</p>
+
+<p>
+Designed With Premium Experience ✈️
+</p>
+
+</footer>
+
+<!-- =========================================================
+AI CHAT
+========================================================= -->
+
+<div class="ai-btn" id="aiBtn">
+🤖
+</div>
+
+<div class="chat-box" id="chatBox">
+
+<h3>
+Visa AI Assistant
+</h3>
+
+<p>
+Halo 👋 Saya AI Assistant Visa ID.
+Ada yang bisa saya bantu?
+</p>
+
+<input type="text" placeholder="Ketik pesan...">
+
+<button>
+Kirim Pesan
+</button>
+
+</div>
+
+<!-- =========================================================
+SCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+LOADER
+========================================================= */
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.opacity="0";
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+},1000);
+
+},3000);
+
+});
+
+/* =========================================================
+AI CHAT
+========================================================= */
+
+document.getElementById("aiBtn").onclick=function(){
+
+let chat=document.getElementById("chatBox");
+
+if(chat.style.display==="block"){
+chat.style.display="none";
+}else{
+chat.style.display="block";
+}
+
+}
+
+/* =========================================================
+SEARCH
+========================================================= */
+
+function searchCountry(){
+
+let input=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let cards=document
+.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let name=card
+.getAttribute("data-name");
+
+if(name.includes(input)){
+card.classList.remove("hide");
+}else{
+card.classList.add("hide");
+}
+
+});
+
+}
+
+/* =========================================================
+LIVE COUNTER
+========================================================= */
+
+function animateCounter(id,target){
+
+let count=0;
+
+let speed=target/100;
+
+let interval=setInterval(()=>{
+
+count+=speed;
+
+if(count>=target){
+
+count=target;
+clearInterval(interval);
+
+}
+
+document.getElementById(id)
+.innerText=Math.floor(count).toLocaleString()+"+";
+
+},20);
+
+}
+
+animateCounter("counter1",1245);
+animateCounter("counter2",892);
+animateCounter("counter3",321);
+animateCounter("counter4",150);
+
+/* =========================================================
+SCROLL REVEAL
+========================================================= */
+
+function reveal(){
+
+let reveals=document.querySelectorAll(".reveal");
+
+reveals.forEach(el=>{
+
+let windowHeight=window.innerHeight;
+
+let elementTop=el.getBoundingClientRect().top;
+
+let visible=120;
+
+if(elementTop<windowHeight-visible){
+el.classList.add("active");
+}
+
+});
+
+}
+
+window.addEventListener("scroll",reveal);
+
+reveal();
+
+</script>
 
 </body>
 </html>
