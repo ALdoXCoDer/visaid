@@ -7,7 +7,7 @@
 <title>Visa ID</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,42 +19,34 @@
 }
 
 body{
-  background:#f4f5f7;
+  background:#050816;
   overflow-x:hidden;
-  color:#111;
+  color:white;
 }
 
 /* ===== BACKGROUND PESAWAT ===== */
 
-.bg-plane{
+.bg{
   position:fixed;
   inset:0;
   z-index:-2;
 
   background:
-  linear-gradient(rgba(255,255,255,0.88),rgba(255,255,255,0.92)),
-  url('https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg');
+  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.82)),
+  url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80);
 
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
 }
 
-/* ===== DARK MODE ===== */
+/* ===== OVERLAY BLUR ===== */
 
-body.dark{
-  background:#0b1220;
-  color:white;
-}
-
-body.dark .bg-plane{
-  background:
-  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.76)),
-  url('https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg');
-
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  backdrop-filter:blur(2px);
 }
 
 /* ===== TOPBAR ===== */
@@ -63,26 +55,52 @@ body.dark .bg-plane{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px;
+  padding:18px 18px 10px;
 }
 
 .logo{
-  font-size:24px;
+  font-size:22px;
   font-weight:700;
 }
 
 .toggle{
   border:none;
-  background:#111827;
-  color:white;
+  background:white;
+  color:black;
   padding:10px 14px;
   border-radius:14px;
-  cursor:pointer;
+  font-size:12px;
   font-weight:600;
+  cursor:pointer;
 }
 
-body.dark .toggle{
+/* ===== LIGHT MODE ===== */
+
+body.light{
+  background:#f4f4f4;
+  color:#111;
+}
+
+body.light .bg{
+  background:
+  linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.82)),
+  url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80);
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+body.light .toggle{
+  background:#111827;
+  color:white;
+}
+
+body.light .search{
   background:white;
+}
+
+body.light .search input{
   color:black;
 }
 
@@ -94,35 +112,31 @@ body.dark .toggle{
 }
 
 .header h1{
-  font-size:34px;
+  font-size:38px;
   line-height:1.3;
-  font-weight:700;
-  margin-bottom:12px;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
 .header p{
   font-size:14px;
-  color:#666;
-}
-
-body.dark .header p{
-  color:#d1d5db;
+  opacity:0.8;
 }
 
 /* ===== SEARCH ===== */
 
 .search-wrap{
-  padding:0 18px 24px;
+  padding:0 16px 22px;
 }
 
 .search{
-  background:white;
-  border-radius:20px;
-  padding:14px 18px;
+  width:100%;
+  background:#08152f;
+  border-radius:18px;
+  padding:15px 16px;
   display:flex;
   align-items:center;
   gap:10px;
-  box-shadow:0 8px 24px rgba(0,0,0,0.08);
 }
 
 .search input{
@@ -130,40 +144,32 @@ body.dark .header p{
   border:none;
   outline:none;
   background:none;
-  font-size:14px;
-}
-
-body.dark .search{
-  background:#111827;
-}
-
-body.dark .search input{
   color:white;
+  font-size:14px;
 }
 
 /* ===== GRID ===== */
 
 .list{
-  padding:0 18px 40px;
+  padding:0 16px 40px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px;
+  gap:16px;
 }
 
 /* ===== CARD ===== */
 
 .card{
   position:relative;
-  height:250px;
-  border-radius:28px;
+  height:270px;
+  border-radius:26px;
   overflow:hidden;
   background-size:cover;
   background-position:center;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  padding:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  padding:16px;
 }
 
 .card::before{
@@ -172,8 +178,8 @@ body.dark .search input{
   inset:0;
   background:linear-gradient(
     to top,
-    rgba(0,0,0,0.78),
-    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.82),
+    rgba(0,0,0,0.20),
     rgba(0,0,0,0.05)
   );
 }
@@ -187,57 +193,52 @@ body.dark .search input{
 
 .flag{
   position:absolute;
-  top:14px;
-  left:14px;
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  border:2px solid rgba(255,255,255,0.8);
+  top:12px;
+  left:12px;
+  width:40px;
+  height:40px;
+  border-radius:14px;
   object-fit:cover;
+  border:2px solid rgba(255,255,255,0.9);
 }
 
-/* ===== TEXT ===== */
+/* ===== INFO ===== */
 
 .info h3{
-  color:white;
-  font-size:26px;
+  font-size:19px;
   font-weight:700;
   margin-bottom:5px;
 }
 
 .info p{
-  color:rgba(255,255,255,0.9);
-  font-size:13px;
-  margin-bottom:15px;
+  font-size:12px;
+  opacity:0.9;
+  margin-bottom:14px;
 }
 
 /* ===== BUTTON ===== */
 
 .btn{
   width:100%;
+  text-decoration:none;
   background:white;
   color:#111;
-  text-decoration:none;
   padding:13px;
   border-radius:18px;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:14px;
-  font-weight:600;
+  align-items:center;
+  font-size:13px;
+  font-weight:700;
 }
 
-.btn:hover{
-  transform:scale(1.03);
-}
-
-/* ===== HIDE SEARCH ===== */
+/* ===== SEARCH HIDE ===== */
 
 .hide{
   display:none;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== MOBILE ===== */
 
 @media(max-width:600px){
 
@@ -246,11 +247,7 @@ body.dark .search input{
   }
 
   .card{
-    height:220px;
-  }
-
-  .info h3{
-    font-size:22px;
+    height:250px;
   }
 
 }
@@ -258,10 +255,11 @@ body.dark .search input{
 </style>
 </head>
 
-<body class="light">
+<body>
 
 <!-- BACKGROUND -->
-<div class="bg-plane"></div>
+<div class="bg"></div>
+<div class="overlay"></div>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -313,7 +311,7 @@ body.dark .search input{
   <!-- AMERIKA -->
   <div class="card"
   data-name="amerika usa united states"
-  style="background-image:url('https://images.unsplash.com/photo-1496588152823-e60ad99d9b39?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/us.png">
 
@@ -323,7 +321,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -331,7 +329,7 @@ body.dark .search input{
   <!-- KOREA -->
   <div class="card"
   data-name="korea selatan south korea"
-  style="background-image:url('https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/kr.png">
 
@@ -341,7 +339,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -349,7 +347,7 @@ body.dark .search input{
   <!-- JEPANG -->
   <div class="card"
   data-name="jepang japan"
-  style="background-image:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/jp.png">
 
@@ -359,7 +357,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -367,7 +365,7 @@ body.dark .search input{
   <!-- BELANDA -->
   <div class="card"
   data-name="belanda netherlands"
-  style="background-image:url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/nl.png">
 
@@ -377,7 +375,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -385,7 +383,7 @@ body.dark .search input{
   <!-- PRANCIS -->
   <div class="card"
   data-name="prancis france"
-  style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/fr.png">
 
@@ -395,7 +393,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -403,7 +401,7 @@ body.dark .search input{
   <!-- SWISS -->
   <div class="card"
   data-name="swiss switzerland"
-  style="background-image:url('https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/ch.png">
 
@@ -413,7 +411,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -421,7 +419,7 @@ body.dark .search input{
   <!-- ITALIA -->
   <div class="card"
   data-name="italia italy"
-  style="background-image:url('https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/it.png">
 
@@ -431,7 +429,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -439,7 +437,7 @@ body.dark .search input{
   <!-- JERMAN -->
   <div class="card"
   data-name="jerman germany"
-  style="background-image:url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/de.png">
 
@@ -449,7 +447,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -457,7 +455,7 @@ body.dark .search input{
   <!-- AUSTRALIA -->
   <div class="card"
   data-name="australia"
-  style="background-image:url('https://images.unsplash.com/photo-1506973035872-a4f23ef6b47a?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/au.png">
 
@@ -467,7 +465,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -475,7 +473,7 @@ body.dark .search input{
   <!-- SINGAPURA -->
   <div class="card"
   data-name="singapura singapore"
-  style="background-image:url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1000&q=80');">
+  style="background-image:url(https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1200&q=80);">
 
     <img class="flag" src="https://flagcdn.com/w80/sg.png">
 
@@ -485,25 +483,7 @@ body.dark .search input{
     </div>
 
     <a href="form.html" class="btn">
-      Booking Sekarang →
-    </a>
-
-  </div>
-
-  <!-- TURKI -->
-  <div class="card"
-  data-name="turki turkey"
-  style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80');">
-
-    <img class="flag" src="https://flagcdn.com/w80/tr.png">
-
-    <div class="info">
-      <h3>Turki</h3>
-      <p>Sejarah & wisata unik</p>
-    </div>
-
-    <a href="form.html" class="btn">
-      Booking Sekarang →
+      Ajukan Permohonan
     </a>
 
   </div>
@@ -516,7 +496,6 @@ body.dark .search input{
 
 function toggleMode(){
 
-  document.body.classList.toggle("dark");
   document.body.classList.toggle("light");
 
 }
